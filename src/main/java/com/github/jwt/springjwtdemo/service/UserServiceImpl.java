@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,4 +24,16 @@ public class UserServiceImpl implements UserService {
         user.setCreationDate(new Date());
         return userRepository.save(user);
     }
+
+    @Override
+    public List<User> findAll() {
+        return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmailIgnoreCase(email);
+    }
+
+
 }

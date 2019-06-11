@@ -39,10 +39,10 @@ public class AuthenticationController  {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtTokenUtil.generateToken(userDetails);
             response.setHeader("Token", token);
-            return new ResponseEntity<UserDTO>(new UserDTO(userDetails.getUser(),token), HttpStatus.CREATED)
+            return new ResponseEntity<UserDTO>(new UserDTO(userDetails.getUser(),token), HttpStatus.CREATED);
 
         } catch (Exception e) {
-            throw new UnauthorizedException()
+            throw new UnauthorizedException(e.getMessage());
         }
     }
 }
