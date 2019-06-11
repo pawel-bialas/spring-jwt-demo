@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Component
 public class JwtTokenUtil implements Serializable {
@@ -46,5 +47,28 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
+        JwtUser user = (JwtUser) userDetails;
+        final String userName = getUserNameFromToken(token);
+        return (userName.equals(user.getUsername()) && !istokenExpireD(token));
+    }
+
+    private boolean istokenExpireD(String token) {
+        Date expiration = getExpirationDateFromToken(token);
+        return expiration.before(new Date());
+    }
+
+    private Date getExpirationDateFromToken(String token) {
+        Date expiration = null;
+        try {
+            final Claims claims = getClaimsFromToken(token);
+            if (claims != null) {
+                expiration = claims.getExpiration();
+            } else {
+                expiration = null;
+            }
+        } catch (Exception e) {
+            expiration = null;
+        }
+        return expiration;
     }
 }
