@@ -18,12 +18,12 @@ public class JwtUserFacory {
                 user.getEmail(),
                 user.getPassword(),
                 user,
-                mapToGrantedAuthorities(new ArrayList<String>(Arrays.asList("ROLE" + user.getRole()))),
+                mapToGrantedAuthorities(new ArrayList<String>(Arrays.asList("ROLE_" + user.getRole()))),
                 user.isEnabled());
     }
 
 //    TODO check eventually arrow function
     private static List<GrantedAuthority> mapToGrantedAuthorities(ArrayList<String> authorities) {
-        return authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return authorities.stream().map(Authority -> new SimpleGrantedAuthority(Authority)).collect(Collectors.toList());
     }
 }
