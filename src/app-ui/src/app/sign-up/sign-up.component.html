@@ -1,28 +1,28 @@
-<form #userName = "ngForm">
+<form #userForm = "ngForm">
   <div class="form-group">
     <label for="firstName">First name</label>
-    <input type="text" id="firstName" class="form-control" [(ngModel)]="userName.firstName">
+    <input type="text" id="firstName" class="form-control" name="firstName" [(ngModel)]="user.firstName">
   </div>
 
   <div class="form-group">
     <label for="lastName">Last name</label>
-    <input type="text" id="lastName" class="form-control" [(ngModel)]="userName.lastName">
+    <input type="text" id="lastName" class="form-control" name="lastName" [(ngModel)]="user.lastName">
   </div>
 
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" id="email" class="form-control" [(ngModel)]="userName.email">
+    <input type="email" id="email" class="form-control" name="email" [(ngModel)]="user.email">
   </div>
 
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" id="password" class="form-control" [(ngModel)]="userName.password">
+    <input type="password" id="password" class="form-control" name="password" [(ngModel)]="user.password">
   </div>
 
   <div class="form-group">
-    <label for="phoneNumber">Password</label>
-    <input type="number" id="phoneNumber" class="form-control" [(ngModel)]="userName.phoneNumber">
+    <label for="phoneNumber">Phone number</label>
+    <input type="number" id="phoneNumber" class="form-control" name="phoneNumber" [(ngModel)]="user.phoneNumber">
   </div>
 
-  <button type="button" class="btn btn-primary" (click)="saveUser()">Submit</button>
+  <button type="button" class="btn btn-primary" (click)="saveUser(user, userForm)">Submit</button>
 </form>

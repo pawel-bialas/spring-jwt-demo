@@ -14,22 +14,24 @@ public class SpringJwtDemoApplication {
     }
 
 
-    public CorsFilter corsFilter() {
-
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        final CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowCredentials(true);
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("OPTIONS");
-        configuration.addAllowedMethod("POST");
-        configuration.addAllowedMethod("GET");
-        configuration.addAllowedMethod("PUT");
-        configuration.addAllowedMethod("DELETE");
-
-        source.registerCorsConfiguration("/**", configuration);
-        return new CorsFilter(source);
-    }
+//    public CorsFilter corsFilter() {
+//
+//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        final CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.setAllowCredentials(true);
+//        configuration.addAllowedHeader("*");
+//        configuration.addAllowedHeader("Access-Control-Allow-Origin");
+//        configuration.addAllowedOrigin("http://localhost:4200");
+//        configuration.addAllowedMethod("OPTIONS");
+//        configuration.addAllowedMethod("POST");
+//        configuration.addAllowedMethod("GET");
+//        configuration.addAllowedMethod("PUT");
+//        configuration.addAllowedMethod("DELETE");
+//
+//
+//        source.registerCorsConfiguration("/**", configuration);
+//        return new CorsFilter(source);
+//    }
 
 }

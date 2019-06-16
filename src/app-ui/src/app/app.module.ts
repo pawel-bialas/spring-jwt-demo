@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import {ROUTES} from "./routes/app.route";
 import {UserService} from "./service/user.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -24,15 +25,19 @@ import {UserService} from "./service/user.service";
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [
     AppComponent,
     SignUpComponent,
     LoginComponent,
     HomeComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+
   ]
 })
 export class AppModule { }
