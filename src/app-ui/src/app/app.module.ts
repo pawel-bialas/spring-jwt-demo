@@ -12,7 +12,9 @@ import {RouterModule, Routes} from "@angular/router";
 import {ROUTES} from "./routes/app.route";
 import {UserService} from "./service/user.service";
 import {HttpClientModule} from "@angular/common/http";
-
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import {AuthGuard} from "./authentication/auth.guard";
+import {LoginAuthService} from "./authentication/login-auth.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {HttpClientModule} from "@angular/common/http";
     SignUpComponent,
     LoginComponent,
     HomeComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,9 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule
   ],
   providers: [
-    UserService
+    UserService,
+    AuthGuard,
+    LoginAuthService
   ],
   bootstrap: [
     AppComponent,
@@ -37,7 +42,7 @@ import {HttpClientModule} from "@angular/common/http";
     LoginComponent,
     HomeComponent,
     AdminPanelComponent,
-
+    UserPanelComponent
   ]
 })
 export class AppModule { }

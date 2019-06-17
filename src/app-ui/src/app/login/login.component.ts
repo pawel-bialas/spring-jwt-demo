@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../service/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
+
+  public user: any = {};
 
   ngOnInit() {
   }
 
+  loginUser(user: any) {
+    this.userService.loginUser(user).subscribe((response) => {
+      console.log(response)
+      if (response) {
+        if (response['token']) {
+          localStorage.setItem('currentUser', JSON.stringify(response));
+          if (response['user']['role'] === 'ADMIN') {
+            this.router.navigate(['/admin-panel']);
+          }
+          if (response['user']['role'] === 'USER') {
+            this.router.navigate(['/user-panel']);
+          }
+        }
+      }
+    })
+  }
 }

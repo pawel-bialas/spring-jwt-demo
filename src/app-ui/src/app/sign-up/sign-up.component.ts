@@ -16,13 +16,12 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveUser(user: any, userForm: any) {
-    this.userService.saveUser(user).subscribe((response) => {
+  registerUser(user: any, userForm: any) {
+    this.userService.registerUser(user).subscribe((response) => {
       if (response) {
         console.log(response);
         userForm.reset();
       }
     })
-
   }
 }
