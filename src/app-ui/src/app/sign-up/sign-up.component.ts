@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
-import {NgForm} from "@angular/forms";
+import {LoginAuthService} from "../authentication/login-auth.service";
 
 @Component({
   selector: 'sign-up',
@@ -11,7 +11,9 @@ export class SignUpComponent implements OnInit {
 
   public user: any = {};
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: LoginAuthService) {
+    this.authService.isLoggedIn();
+  }
 
   ngOnInit() {
   }

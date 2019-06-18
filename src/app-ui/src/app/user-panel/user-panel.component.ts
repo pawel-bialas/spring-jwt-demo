@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LoginAuthService} from "../authentication/login-auth.service";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-user-panel',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPanelComponent implements OnInit {
 
-  constructor() { }
+  public loggedUser: any = {};
+  public user: any = {};
 
-  ngOnInit() {
+  constructor(private authService: LoginAuthService, private userService: UserService) {
+    this.authService.isLoggedIn();
+    this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
+  ngOnInit() {
+    this.userService.getUser(this.loggedUser['token']).subscribe(response => {
+      console.log(response);
+      this.user = response;
+    })
+
+  }
 }

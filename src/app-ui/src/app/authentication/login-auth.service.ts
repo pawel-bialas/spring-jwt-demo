@@ -11,7 +11,7 @@ export class LoginAuthService {
 
   private subject = new Subject<any>();
 
-  isLogged() {
+  isLoggedIn() {
     if (localStorage.getItem('currentUser')) {
       this.subject.next({status: true})
     } else {

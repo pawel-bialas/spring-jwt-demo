@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginAuthService} from "../authentication/login-auth.service";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'admin-panel',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPanelComponent implements OnInit {
 
-  constructor() { }
+  public loggedUser: any = {};
+  public users: any = [];
+
+  constructor(private authService: LoginAuthService, private userService: UserService) {
+    this.authService.isLoggedIn();
+    this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+
 
   ngOnInit() {
+    this.userService.getAllUsers(this.loggedUser['token']).subscribe(response => {
+      this.users = response;
+    })
   }
 
 }
