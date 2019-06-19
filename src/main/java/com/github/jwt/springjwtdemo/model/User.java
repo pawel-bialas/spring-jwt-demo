@@ -1,34 +1,102 @@
 package com.github.jwt.springjwtdemo.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Where;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
-@Table(name = "users")
-public class User implements Serializable {
+@Table(name = "Users")
+@Where(clause = "status <> 'BLOCKED'" )
+public class User implements UserDetails {
 
+    private static final long serialVersionUID = 641597340859104987L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "lastName")
-    private String lastName;
-    @Column(name = "email")
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
-    @Column(name = "enabled")
-    private boolean enabled;
-    @Column(name = "role")
-    private String role;
-    @Column(name = "phone_number")
-    private String phoneNumber;
-    @Column(name = "creation_date")
-    private Date creationDate;
+    @Column(nullable = false, unique = true)
+    private String unigueAccName;
+    private String descAccName;
+    @CreationTimestamp
+    private LocalDateTime creationDate;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+    @Enumerated(EnumType.STRING)
+    private AccountType type;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+    private Long avatarId;
 
+
+    public User(String email,
+                String password,
+                String unigueAccName,
+                String descAccName,
+                LocalDateTime creationDate,
+                UserStatus status,
+                AccountType type,
+                UserRole role,
+                Long avatarId) {
+        this.email = email;
+        this.password = password;
+        this.unigueAccName = unigueAccName;
+        this.descAccName = descAccName;
+        this.creationDate = creationDate;
+        this.status = status;
+        this.type = type;
+        this.role = role;
+        this.avatarId = avatarId;
+    }
+
+    public User() {
+
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return unigueAccName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.status != UserStatus.BLOCKED;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.status == UserStatus.ACTIVE;
+    }
 
     public Long getId() {
         return id;
@@ -36,22 +104,6 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -62,43 +114,79 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public String getUnigueAccName() {
+        return unigueAccName;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setUnigueAccName(String unigueAccName) {
+        this.unigueAccName = unigueAccName;
     }
 
-    public String getRole() {
-        return role;
+    public String getDescAccName() {
+        return descAccName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setDescAccName(String descAccName) {
+        this.descAccName = descAccName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Date getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
+    }
+
+    public Long getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(Long avatarId) {
+        this.avatarId = avatarId;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", unigueAccName='" + unigueAccName + '\'' +
+                ", descAccName='" + descAccName + '\'' +
+                ", creationDate=" + creationDate +
+                ", status=" + status +
+                ", type=" + type +
+                ", role=" + role +
+                ", avatarId=" + avatarId +
+                '}';
     }
 }

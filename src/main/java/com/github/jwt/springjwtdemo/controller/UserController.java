@@ -1,7 +1,6 @@
 package com.github.jwt.springjwtdemo.controller;
 
 import com.github.jwt.springjwtdemo.model.User;
-import com.github.jwt.springjwtdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
