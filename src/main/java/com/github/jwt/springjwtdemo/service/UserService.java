@@ -41,8 +41,7 @@ public class UserService {
         if (user.getRole() == null) {
             user.setRole(UserRole.USER);
         }
-        User dbUser = userRepository.save(user);
-        return dbUser;
+        return userRepository.save(user);
     }
 
     public List<User> getUsers() {
@@ -73,9 +72,9 @@ public class UserService {
 
     }
 
-    public User findUserByLogin(String login) {
+    public User findUserByEmail(String email) {
         try {
-            Optional<User> byLogin = userRepository.findByLogin(login);
+            Optional<User> byLogin = userRepository.findByEmail(email);
             if (byLogin.isPresent()) {
                 return byLogin.get();
             } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);
@@ -141,7 +140,7 @@ public class UserService {
 
     public void changePassword(String newPassword, Principal principal) {
         try {
-            User user = findUserByLogin(principal.getName());
+            User user = findUserByEmail(principal.getName());
             if (user != null) {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 userRepository.save(user);

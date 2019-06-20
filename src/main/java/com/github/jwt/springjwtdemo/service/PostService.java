@@ -141,9 +141,9 @@ public class PostService {
         }
     }
 
-    public ArrayList<Post> findPostsByUserLogin(String login) {
+    public ArrayList<Post> findPostsByUserLogin(String email) {
         try {
-            Optional<User> byLogin = userRepository.findByLogin(login);
+            Optional<User> byLogin = userRepository.findByEmail(email);
             if (byLogin.isPresent()) {
                 Long userId = byLogin.get().getId();
                 return (ArrayList<Post>) postRepository.findByAccountId(userId);

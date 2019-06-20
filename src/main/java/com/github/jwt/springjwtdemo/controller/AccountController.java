@@ -22,16 +22,6 @@ public class AccountController {
     }
 
 
-
-    @PostMapping(path = "/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addUser (@RequestBody User user) {
-        userService.saveUser(user);
-    }
-
-
-
-
     @GetMapping(path = "/users/user-id/{id}")
     @Secured("ROLE_ADMIN")
     @ResponseStatus (HttpStatus.OK)
@@ -42,8 +32,9 @@ public class AccountController {
     @GetMapping(path = "/users/user-login/{login}")
     @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.OK)
-    public User findUserByLogin (@PathVariable ("login") String login) {
-        return userService.findUserByLogin(login);
+    public User findUserByLogin (@PathVariable ("login") String email) {
+
+        return userService.findUserByEmail(email);
     }
 
     @GetMapping(path = "/users/user-uniqe/{unique}")
