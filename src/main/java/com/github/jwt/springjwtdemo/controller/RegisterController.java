@@ -21,7 +21,7 @@ public class RegisterController {
     public ResponseEntity<Response> register (@RequestBody User user) {
         User dbUser = userService.saveUser(user);
         if (dbUser != null) {
-            return new ResponseEntity<Response>(new Response("User saved!"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new Response("User saved!"), HttpStatus.CREATED);
         }
         return null;
     }
