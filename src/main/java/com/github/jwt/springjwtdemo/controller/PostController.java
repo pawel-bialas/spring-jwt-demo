@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 public class PostController {
@@ -20,7 +21,7 @@ public class PostController {
     }
 
 
-    @PostMapping(path = "/account/new-post")
+    @PostMapping(path = "/post/new-post")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.CREATED)
     public void newPost(@RequestBody Post post,
@@ -28,7 +29,7 @@ public class PostController {
         postService.saveNewPost(post, principal);
     }
 
-    @PatchMapping(path = "/account/edit-post/{id}")
+    @PatchMapping(path = "/post/edit-post/{id}")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.OK)
     public void editPost(Principal principal,
@@ -38,12 +39,18 @@ public class PostController {
     }
 
 
-    @DeleteMapping(path = "/account/delete-post/{id}")
+    @DeleteMapping(path = "/post/delete-post/{id}")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.OK)
     public void deletePost(Principal principal,
                            @PathVariable("id") Long id) {
         postService.deletePost(id, principal);
     }
+
+//    @GetMapping(path = "/post/get-all")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<Post> getAllPublicPosts() {
+//        return postService.findAllPublicPosts();
+//    }
 
 }

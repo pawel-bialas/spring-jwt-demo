@@ -19,9 +19,11 @@ import javax.security.auth.message.AuthException;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -57,9 +59,12 @@ public class PostService {
         }
     }
 
-    public ArrayList<Post> findAllPosts() {
+    public List<Post> findAllPublicPosts() {
 
-        return (ArrayList<Post>) postRepository.findAll();
+        List<Post> allPosts = postRepository.findAll();
+        return allPosts.stream()
+                .filter(post -> !post.getStatus().equals(ContentStatus.DELETED))
+                .collect(Collectors.toList());
     }
 
     public void deletePost(Long postId, Principal principal) {
@@ -78,37 +83,6 @@ public class PostService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, SystemMessage.unauthorizedRequestError);
         } catch (EntityNotFoundException notFound){
             LOG.info(SystemMessage.badRequestError + principal.getName());
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    SystemMessage.postNotFoundError
-            );
-        }
-    }
-
-
-    public void adminDeletePost(Long postId) {
-        try {
-            if (postRepository.findById(postId).isPresent()) {
-                markPostAsDeleted(postId);
-                LOG.info("post: " + postId + " was deleted by: admin");
-            } else throw new EntityNotFoundException(SystemMessage.postNotFoundError);
-        } catch (EntityNotFoundException notFound) {
-            LOG.info(SystemMessage.postNotFoundError);
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    SystemMessage.postNotFoundError
-            );
-        }
-    }
-
-    public void adminEditPost (Long postId, String content) {
-        try {
-            if (postRepository.findById(postId).isPresent()) {
-                editPostContent(postId,content);
-                LOG.info("post: " + postId + " was edited by: admin");
-            } else throw new EntityNotFoundException( SystemMessage.postNotFoundError);
-        } catch (EntityNotFoundException notFound) {
-            LOG.info(SystemMessage.postNotFoundError);
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
                     SystemMessage.postNotFoundError
@@ -175,7 +149,7 @@ public class PostService {
 
     }
 
-    private void editPostContent (Long postId, String content) {
+    public void editPostContent (Long postId, String content) {
         Post post = postRepository.findById(postId).get();
         post.setContent(content);
         post.setStatus(ContentStatus.EDITED);
@@ -183,7 +157,7 @@ public class PostService {
         postRepository.save(post);
     }
 
-    private void markPostAsDeleted (Long postId){
+    public void markPostAsDeleted (Long postId){
         Post deletedPost = postRepository.getOne(postId);
         deletedPost.setEditionDate(LocalDateTime.now());
         deletedPost.setStatus(ContentStatus.DELETED);

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.security.Principal;
 import java.util.List;
@@ -35,13 +36,24 @@ public class UserService {
 
 
     public User saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setStatus(UserStatus.ACTIVE);
-        user.setType(AccountType.PUBLIC);
-        if (user.getRole() == null) {
-            user.setRole(UserRole.USER);
+        try {
+            if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+                throw new EntityExistsException(SystemMessage.userNameAlreadyTaken);
+            }
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setStatus(UserStatus.ACTIVE);
+            user.setType(AccountType.PUBLIC);
+            if (user.getRole() == null) {
+                user.setRole(UserRole.USER);
+            }
+            return userRepository.save(user);
+        } catch (EntityExistsException duplicateUser) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    duplicateUser.getMessage()
+                    );
         }
-        return userRepository.save(user);
+
     }
 
     public List<User> getUsers() {
@@ -66,7 +78,7 @@ public class UserService {
         } catch (EntityNotFoundException notFound) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    SystemMessage.userNotFoundError
+                    notFound.getMessage()
             );
         }
 
@@ -78,10 +90,10 @@ public class UserService {
             if (byLogin.isPresent()) {
                 return byLogin.get();
             } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException notFound) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    SystemMessage.userNotFoundError
+                    notFound.getMessage()
             );
         }
 
@@ -95,30 +107,16 @@ public class UserService {
             } else
                 LOG.warning("Error");
             throw new EntityNotFoundException(SystemMessage.userNotFoundError);
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    SystemMessage.userNotFoundError
-            );
-        }
-
-    }
-
-    public void adminDeleteUser(Long accountId) {
-        try {
-            User userById = findUserById(accountId);
-            if (userById != null) {
-                userById.setStatus(UserStatus.BLOCKED);
-                userRepository.save(userById);
-                LOG.info("User login: " + userById.getEmail() + " was blocked by admin");
-            } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);
         } catch (EntityNotFoundException notFound) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    SystemMessage.userNotFoundError
+                    notFound.getMessage()
             );
         }
+
     }
+
+
 
 
 
@@ -145,11 +143,11 @@ public class UserService {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 userRepository.save(user);
                 LOG.info("Password was changed for account: " + principal.getName());
-            } else throw new EntityNotFoundException();
+            } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);
         } catch (EntityNotFoundException notFound) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    SystemMessage.userNotFoundError
+                    notFound.getMessage()
             );
         }
 

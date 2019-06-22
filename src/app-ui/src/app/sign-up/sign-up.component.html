@@ -1,13 +1,4 @@
 <form #userForm = "ngForm">
-  <div class="form-group">
-    <label for="firstName">First name</label>
-    <input type="text" id="firstName" class="form-control" name="firstName" [(ngModel)]="user.firstName">
-  </div>
-
-  <div class="form-group">
-    <label for="lastName">Last name</label>
-    <input type="text" id="lastName" class="form-control" name="lastName" [(ngModel)]="user.lastName">
-  </div>
 
   <div class="form-group">
     <label for="email">Email</label>
@@ -20,8 +11,13 @@
   </div>
 
   <div class="form-group">
-    <label for="phoneNumber">Phone number</label>
-    <input type="number" id="phoneNumber" class="form-control" name="phoneNumber" [(ngModel)]="user.phoneNumber">
+    <label for="unigueAccName">Unique Account Name</label>
+    <input type="text" id="unigueAccName" class="form-control" name="unigueAccName" [(ngModel)]="user.unigueAccName">
+  </div>
+
+  <div class="form-group">
+    <label for="descAccName">Descriptive Account name</label>
+    <input type="text" id="descAccName" class="form-control" name="descAccName" [(ngModel)]="user.descAccName">
   </div>
 
   <button type="button" class="btn btn-primary" (click)="registerUser(user, userForm)">Submit</button>

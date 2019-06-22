@@ -19,7 +19,7 @@ public class CommentController {
     }
 
 
-    @PostMapping(path = "/account/new-comment/{id}")
+    @PostMapping(path = "/comment/new-comment/{id}")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.CREATED)
     public void addNewComment(@RequestBody Comment comment, @PathVariable("id") Long postId, Principal principal) {
@@ -27,7 +27,7 @@ public class CommentController {
 
     }
 
-    @DeleteMapping(path = "/account/delete-comment/{id}")
+    @DeleteMapping(path = "/comment/delete-comment/{id}")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.OK)
     public void deleteComment(Principal principal, @PathVariable("id") Long commentId) {

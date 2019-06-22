@@ -117,41 +117,6 @@ public class CommentService {
         }
     }
 
-    public void adminDeleteComment (Long commentId) {
-        try {
-            if (commentRepository.findById(commentId).isPresent()) {
-                Comment comment = commentRepository.getOne(commentId);
-                comment.setStatus(ContentStatus.DELETED);
-                comment.setEditionDate(LocalDateTime.now());
-                commentRepository.save(comment);
-            } else throw new EntityNotFoundException(SystemMessage.commentNotFoundError);
-        } catch (EntityNotFoundException notFound) {
-            LOG.info(SystemMessage.commentNotFoundError);
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    SystemMessage.commentNotFoundError
-            );
-        }
-    }
-
-    public void adminEditComment (Long commentId, String content) {
-        try {
-            if (commentRepository.findById(commentId).isPresent()){
-                Comment comment = commentRepository.getOne(commentId);
-                comment.setContent(content);
-                comment.setStatus(ContentStatus.EDITED);
-                comment.setEditionDate(LocalDateTime.now());
-                commentRepository.save(comment);
-            } else throw new EntityNotFoundException(SystemMessage.commentNotFoundError);
-        } catch (EntityNotFoundException notFound) {
-            LOG.info(SystemMessage.commentNotFoundError);
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    SystemMessage.commentNotFoundError
-            );
-        }
-    }
-
 
     public Comment findById(Long commentId) {
         try {

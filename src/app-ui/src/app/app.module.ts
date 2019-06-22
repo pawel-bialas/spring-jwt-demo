@@ -15,6 +15,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import {AuthGuard} from "./authentication/auth.guard";
 import {LoginAuthService} from "./authentication/login-auth.service";
+import { WallComponent } from './wall/wall.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {LoginAuthService} from "./authentication/login-auth.service";
     LoginComponent,
     HomeComponent,
     AdminPanelComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 package com.github.jwt.springjwtdemo.repository;
 
 import com.github.jwt.springjwtdemo.model.Post;
+import javafx.geometry.Pos;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
