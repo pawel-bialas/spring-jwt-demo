@@ -101,7 +101,7 @@ public class UserService {
 
     public User findUserByUniqueAccName(String uniqueAccName) {
         try {
-            Optional<User> byUnigueAccName = userRepository.findByUnigueAccName(uniqueAccName);
+            Optional<User> byUnigueAccName = userRepository.findByUniqueAccName(uniqueAccName);
             if (byUnigueAccName.isPresent()) {
                 return byUnigueAccName.get();
             } else

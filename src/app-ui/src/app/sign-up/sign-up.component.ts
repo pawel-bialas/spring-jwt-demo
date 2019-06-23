@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
 import {LoginAuthService} from "../authentication/login-auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'sign-up',
@@ -11,7 +12,7 @@ export class SignUpComponent implements OnInit {
 
   public user: any = {};
 
-  constructor(private userService: UserService, private authService: LoginAuthService) {
+  constructor(private userService: UserService, private authService: LoginAuthService, private router: Router) {
     this.authService.isLoggedIn();
   }
 
@@ -23,6 +24,7 @@ export class SignUpComponent implements OnInit {
       if (response) {
         console.log(response);
         userForm.reset();
+        this.router.navigate(['/login']);
       }
     })
   }

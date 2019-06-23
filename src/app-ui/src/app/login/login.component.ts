@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   loginUser(user: any) {
     this.userService.loginUser(user).subscribe((response) => {
-      console.log(response)
+      console.log(response);
       if (response) {
         if (response['token']) {
           localStorage.setItem('currentUser', JSON.stringify(response));

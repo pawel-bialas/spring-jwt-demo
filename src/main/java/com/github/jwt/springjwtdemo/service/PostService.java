@@ -42,7 +42,7 @@ public class PostService {
 
     public void saveNewPost(Post post, Principal principal) {
         try {
-            Long accountId = userRepository.findByUnigueAccName(principal.getName()).get().getId();
+            Long accountId = userRepository.findByUniqueAccName(principal.getName()).get().getId();
             if (accountId != null) {
                 post.setStatus(ContentStatus.NEW);
                 post.setType(ContentType.BLOG_POST);
@@ -69,7 +69,7 @@ public class PostService {
 
     public void deletePost(Long postId, Principal principal) {
         try {
-            Long deletingAccountId = userRepository.findByUnigueAccName(principal.getName()).get().getId();
+            Long deletingAccountId = userRepository.findByUniqueAccName(principal.getName()).get().getId();
             Long authorAccountId = postRepository.findById(postId).get().getAccountId();
             Long currentPostId = postRepository.findById(postId).get().getId();
             if (Objects.equals(authorAccountId, deletingAccountId)) {
@@ -95,7 +95,7 @@ public class PostService {
             Long currentPost = postRepository.getOne(postId).getId();
             if (currentPost != null) {
                 Long authorAccountId = postRepository.getOne(currentPost).getAccountId();
-                Long editorAccountId = userRepository.findByUnigueAccName(principal.getName()).get().getId();
+                Long editorAccountId = userRepository.findByUniqueAccName(principal.getName()).get().getId();
                 if (Objects.equals(editorAccountId, authorAccountId)) {
                     editPostContent(postId,content);
                     LOG.info("post: " + currentPost + " was edited by: " + principal.getName());

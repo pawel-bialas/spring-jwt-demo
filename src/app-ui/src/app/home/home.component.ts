@@ -14,4 +14,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  loginWitGoogle() {
+    console.log('worksG')
+  }
+
+  loginWitTwitter() {
+    console.log('worksTT')
+  }
 }

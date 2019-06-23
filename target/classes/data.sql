@@ -8,7 +8,7 @@ insert into users (
     role,
     status,
     type,
-    unigue_acc_name)
+    unique_acc_name)
 values (
            1,
            1,

@@ -25,7 +25,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false, unique = true)
-    private String unigueAccName;
+    private String uniqueAccName;
     private String descAccName;
     @CreationTimestamp
     private LocalDateTime creationDate;
@@ -40,7 +40,7 @@ public class User implements UserDetails {
 
     public User(String email,
                 String password,
-                String unigueAccName,
+                String uniqueAccName,
                 String descAccName,
                 LocalDateTime creationDate,
                 UserStatus status,
@@ -49,7 +49,7 @@ public class User implements UserDetails {
                 Long avatarId) {
         this.email = email;
         this.password = password;
-        this.unigueAccName = unigueAccName;
+        this.uniqueAccName = uniqueAccName;
         this.descAccName = descAccName;
         this.creationDate = creationDate;
         this.status = status;
@@ -75,7 +75,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return unigueAccName;
+        return uniqueAccName;
     }
 
     @Override
@@ -118,12 +118,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getUnigueAccName() {
-        return unigueAccName;
+    public String getUniqueAccName() {
+        return uniqueAccName;
     }
 
-    public void setUnigueAccName(String unigueAccName) {
-        this.unigueAccName = unigueAccName;
+    public void setUniqueAccName(String uniqueAccName) {
+        this.uniqueAccName = uniqueAccName;
     }
 
     public String getDescAccName() {
@@ -180,7 +180,7 @@ public class User implements UserDetails {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", unigueAccName='" + unigueAccName + '\'' +
+                ", uniqueAccName='" + uniqueAccName + '\'' +
                 ", descAccName='" + descAccName + '\'' +
                 ", creationDate=" + creationDate +
                 ", status=" + status +
