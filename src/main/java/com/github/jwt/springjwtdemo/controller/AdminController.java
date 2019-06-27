@@ -3,7 +3,6 @@ package com.github.jwt.springjwtdemo.controller;
 import com.github.jwt.springjwtdemo.model.Post;
 import com.github.jwt.springjwtdemo.model.User;
 import com.github.jwt.springjwtdemo.service.AdminService;
-import com.github.jwt.springjwtdemo.service.CommentService;
 import com.github.jwt.springjwtdemo.service.PostService;
 import com.github.jwt.springjwtdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +69,21 @@ public class AdminController {
     public void adminEditComment (@PathVariable ("id") Long commentId, String content) {
         adminService.adminEditComment(commentId,content);
     }
+
+    @PostMapping(path = "/master/promote-admin/{login}")
+    @Secured("ROLE_MASTER_ADMIN")
+    public void promoteAdmin (@PathVariable("login") String userLogin) {
+        adminService.promoteAdmin(userLogin);
+    }
+
+    @PostMapping(path = "/master/remove-admin/{login}")
+    @Secured("ROLE_MASTER_ADMIN")
+    public void removeAdmin (@PathVariable("login") String userLogin) {
+        adminService.removeAdmin(userLogin);
+    }
+
+
+
 
 }
 

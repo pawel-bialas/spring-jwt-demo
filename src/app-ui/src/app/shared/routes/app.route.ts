@@ -1,10 +1,10 @@
 import {Routes} from "@angular/router";
-import {HomeComponent} from "../home/home.component";
-import {LoginComponent} from "../login/login.component";
-import {SignUpComponent} from "../sign-up/sign-up.component";
-import {AdminPanelComponent} from "../admin-panel/admin-panel.component";
-import {AuthGuard} from "../authentication/auth.guard";
-import {UserPanelComponent} from "../user-panel/user-panel.component";
+import {HomeComponent} from "../../home/home.component";
+import {LoginComponent} from "../../users/login/login.component";
+import {SignUpComponent} from "../../users/sign-up/sign-up.component";
+import {AdminPanelComponent} from "../../admin/admin-panel/admin-panel.component";
+import {AuthGuard} from "../../authentication/auth.guard";
+import {UserPanelComponent} from "../../users/user-panel/user-panel.component";
 
 
 export const ROUTES: Routes = [

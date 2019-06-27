@@ -1,0 +1,24 @@
+<form [formGroup]="userService.form" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controller-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input formControlName="email" matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="password" matInput placeholder="Password">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="confirmPassword" matInput placeholder="Repeat password">
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Submit</button>
+        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

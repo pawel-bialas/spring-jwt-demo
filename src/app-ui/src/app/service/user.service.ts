@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Injectable()
 export class UserService {
@@ -8,6 +9,13 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.http = http;
   }
+
+  form: FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+  });
 
   registerUser(user: any): Observable<any> {
     const headers = new HttpHeaders({'Access-Control-Allow-Origin': "*"});

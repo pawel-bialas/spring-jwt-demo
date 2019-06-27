@@ -1,3 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+div.container {
+  margin: 0 40px;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.form.normal-form {
+  margin: 10px;
+}
+
+.controller-container{
+  width: 100%;
+  padding: 5%;
+}

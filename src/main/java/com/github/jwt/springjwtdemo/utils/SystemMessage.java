@@ -12,5 +12,6 @@ public class SystemMessage {
     public final static String authenticationFailed = "Authentication failed";
     public final static String userNameAlreadyTaken = "User name is already in use. Please try another.";
 
+
 }
 

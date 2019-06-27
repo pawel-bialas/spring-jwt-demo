@@ -47,10 +47,10 @@ public class PostController {
         postService.deletePost(id, principal);
     }
 
-//    @GetMapping(path = "/post/get-all")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Post> getAllPublicPosts() {
-//        return postService.findAllPublicPosts();
-//    }
+    @GetMapping(path = "/post/get-all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Post> getAllPublicPosts() {
+        return postService.findAllPublicPosts();
+    }
 
 }

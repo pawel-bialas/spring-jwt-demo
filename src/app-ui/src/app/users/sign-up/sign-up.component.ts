@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../service/user.service";
-import {LoginAuthService} from "../authentication/login-auth.service";
+import {UserService} from "../../service/user.service";
+import {LoginAuthService} from "../../authentication/login-auth.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -27,5 +27,9 @@ export class SignUpComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     })
+  }
+
+  onClear() {
+
   }
 }

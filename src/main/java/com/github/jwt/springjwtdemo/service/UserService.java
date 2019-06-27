@@ -43,9 +43,8 @@ public class UserService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setStatus(UserStatus.ACTIVE);
             user.setType(AccountType.PUBLIC);
-            if (user.getRole() == null) {
-                user.setRole(UserRole.USER);
-            }
+            user.setRole(UserRole.USER);
+
             return userRepository.save(user);
         } catch (EntityExistsException duplicateUser) {
             throw new ResponseStatusException(

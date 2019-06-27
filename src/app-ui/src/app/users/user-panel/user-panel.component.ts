@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginAuthService} from "../authentication/login-auth.service";
-import {UserService} from "../service/user.service";
+import {LoginAuthService} from "../../authentication/login-auth.service";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-user-panel',

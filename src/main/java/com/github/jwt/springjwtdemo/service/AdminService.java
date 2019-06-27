@@ -1,9 +1,6 @@
 package com.github.jwt.springjwtdemo.service;
 
-import com.github.jwt.springjwtdemo.model.Comment;
-import com.github.jwt.springjwtdemo.model.ContentStatus;
-import com.github.jwt.springjwtdemo.model.User;
-import com.github.jwt.springjwtdemo.model.UserStatus;
+import com.github.jwt.springjwtdemo.model.*;
 import com.github.jwt.springjwtdemo.repository.CommentRepository;
 import com.github.jwt.springjwtdemo.repository.PostRepository;
 import com.github.jwt.springjwtdemo.repository.UserRepository;
@@ -12,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
@@ -35,7 +33,7 @@ public class AdminService {
 
     private Logger LOG = Logger.getLogger(AdminService.class.getName());
 
-    public void adminDeleteComment (Long commentId) {
+    public void adminDeleteComment(Long commentId) {
         try {
             if (commentRepository.findById(commentId).isPresent()) {
                 Comment comment = commentRepository.getOne(commentId);
@@ -68,12 +66,12 @@ public class AdminService {
         }
     }
 
-    public void adminEditPost (Long postId, String content) {
+    public void adminEditPost(Long postId, String content) {
         try {
             if (postRepository.findById(postId).isPresent()) {
-                postService.editPostContent(postId,content);
+                postService.editPostContent(postId, content);
                 LOG.info("post: " + postId + " was edited by: admin");
-            } else throw new EntityNotFoundException( SystemMessage.postNotFoundError);
+            } else throw new EntityNotFoundException(SystemMessage.postNotFoundError);
         } catch (EntityNotFoundException notFound) {
             LOG.info(SystemMessage.postNotFoundError);
             throw new ResponseStatusException(
@@ -113,6 +111,35 @@ public class AdminService {
                     HttpStatus.NOT_FOUND,
                     notFound.getMessage()
             );
+        }
+    }
+
+    public void promoteAdmin(String userLogin) {
+        try {
+            User user = userRepository.findByEmailIgnoreCase(userLogin);
+            if (user != null) {
+                if (!user.getRole().equals(UserRole.ADMIN)) {
+                    user.setRole(UserRole.ADMIN);
+                    userRepository.save(user);
+                } else throw new Exception("This is already an admin's account!");
+            } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);
+        } catch (Exception alreadyAdmin) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, alreadyAdmin.getMessage());
+        }
+    }
+
+
+    public void removeAdmin(String userLogin) {
+        try {
+            User user = userRepository.findByEmailIgnoreCase(userLogin);
+            if (user != null) {
+                if (!user.getRole().equals(UserRole.USER)) {
+                    user.setRole(UserRole.USER);
+                    userRepository.save(user);
+                } else throw new Exception("This is already an user's account!");
+            } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);
+        } catch (Exception alreadyUser) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, alreadyUser.getMessage());
         }
     }
 }
