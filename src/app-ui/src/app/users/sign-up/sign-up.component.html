@@ -1,23 +1,49 @@
 <form [formGroup]="registerForm" class="normal-form" (submit)="onSubmit()">
-  <mat-grid-list cols="2" rowHeight="300px">
-    <mat-grid-tile>
       <div class="control-container">
         <mat-form-field>
           <input formControlName="email" matInput placeholder="Email/login*">
-          <mat-error *ngIf="registerForm.controls['email'].errors?.required">This field is required.</mat-error>
-          <mat-error *ngIf="registerForm.controls['email'].errors?.email">Invalid email format.</mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('required')">This field is required.</mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Invalid email format.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="password" type="password" matInput placeholder="Password*">
-          <mat-error *ngIf="registerForm.controls['password'].errors?.required">This field is required.</mat-error>
+          <input
+            formControlName="password" type="password" matInput placeholder="Password*">
         </mat-form-field>
+        <label class="col" [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
+          registerForm.controls['password'].hasError('minlength') ? 'cancel' :
+            'check_circle' }}</i>
+          Must be at least 8 characters!
+        </label>
+        <label class="col" [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
+          registerForm.controls['password'].hasError('hasNumber') ? 'cancel' :
+            'check_circle' }}</i>
+          Must contain at least 1 number!
+        </label>
+        <label class="col" [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
+          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
+          registerForm.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
+            'check_circle' }}</i>
+          Must contain at least 1 in Capital Case!
+        </label>
+        <label class="col" [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
+          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
+          registerForm.controls['password'].hasError('hasSmallCase') ? 'cancel' :
+            'check_circle' }}</i>
+          Must contain at least 1 Letter in Small Case!
+        </label>
+        <label class="col" [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
+          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
+          registerForm.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
+            'check_circle' }}</i>
+          Must contain at least 1 Special Character!
+        </label>
         <mat-form-field>
           <input formControlName="confirmPassword" type="password" matInput placeholder="Repeat password*">
           <mat-error>Provided password didn't match.</mat-error>
         </mat-form-field>
       </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <div class="control-container">
         <mat-form-field>
           <input formControlName="uniqueAccName" matInput placeholder="Unique account name*">
@@ -44,7 +70,4 @@
           <button mat-raised-button color="primary" style="margin-left: 7px" type="submit" [disabled]="registerForm.invalid">Submit</button>
         </div>
       </div>
-
-    </mat-grid-tile>
-  </mat-grid-list>
 </form>

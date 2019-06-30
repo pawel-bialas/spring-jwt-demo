@@ -68,6 +68,13 @@ export class SignUpComponent implements OnInit {
           CustomValidators.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
           // 4. check whether the entered password has a lower-case letter
           CustomValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
+          // 5. check whether the entered password has a special character
+          CustomValidators.patternValidator(
+            /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+            {
+              hasSpecialCharacters: true
+            }
+          ),
           // 6. Has a minimum length of 8 characters
           Validators.minLength(8)])
         ],
