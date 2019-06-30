@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(private userService: UserService, private authService: LoginAuthService, private router: Router, private fb: FormBuilder) {
     this.authService.isLoggedIn();
-    this.registerForm = this.createSignupForm();
+    this.registerForm = this.createRegisterForm();
   }
 
   // registerForm: FormGroup = new FormGroup({
@@ -51,10 +51,9 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
 
-  createSignupForm(): FormGroup {
+  createRegisterForm(): FormGroup {
     return this.fb.group(
       {
-        // email is required and must be a valid email email
         email: ['', Validators.compose([
           Validators.email,
           Validators.required])
@@ -69,12 +68,7 @@ export class SignUpComponent implements OnInit {
           // 4. check whether the entered password has a lower-case letter
           CustomValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
           // 5. check whether the entered password has a special character
-          CustomValidators.patternValidator(
-            /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
-            {
-              hasSpecialCharacters: true
-            }
-          ),
+          CustomValidators.patternValidator(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, {hasSpecialCharacters: true}),
           // 6. Has a minimum length of 8 characters
           Validators.minLength(8)])
         ],

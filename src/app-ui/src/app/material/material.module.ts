@@ -15,6 +15,7 @@ import * as Material from '@angular/material'
     Material.MatSelectModule,
     Material.MatButtonModule,
     Material.MatRadioModule,
+    Material.MatTooltipModule
 
   ],
   exports: [
@@ -25,7 +26,8 @@ import * as Material from '@angular/material'
     Material.MatRadioModule,
     Material.MatSelectModule,
     Material.MatButtonModule,
-    Material.MatRadioModule
+    Material.MatRadioModule,
+    Material.MatTooltipModule
   ]
 
 })

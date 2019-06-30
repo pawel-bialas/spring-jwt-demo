@@ -4,7 +4,9 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-div.container {
+.container {
+  justify-content: center;
+  display: flex;
   margin: 0 40px;
 }
 
@@ -17,17 +19,30 @@ div.container {
   flex: 1 1 auto;
 }
 
+.register-container {
+  width: 500px;
+  justify-content: center;
+
+
+}
+
 .form.normal-form {
   margin: 10px;
 }
 
 .control-container{
+  justify-content: center;
   width: 100%;
-  padding: 5%;
+
+
 }
 
 .control-container > *{
   width: 100%;
+
+}
+
+.mat-form-field {
 }
 
 .add-bottom-padding {
