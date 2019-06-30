@@ -40,9 +40,12 @@ public class UserService {
             if (userRepository.findByEmail(user.getEmail()).isPresent()) {
                 throw new EntityExistsException(SystemMessage.userNameAlreadyTaken);
             }
+
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setStatus(UserStatus.ACTIVE);
-            user.setType(AccountType.PUBLIC);
+            if (user.getType() == null) {
+                user.setType(AccountType.PUBLIC);
+            }
             user.setRole(UserRole.USER);
 
             return userRepository.save(user);

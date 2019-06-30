@@ -1,24 +1,50 @@
-<form [formGroup]="userService.form" class="normal-form">
+<form [formGroup]="registerForm" class="normal-form" (submit)="onSubmit()">
   <mat-grid-list cols="2" rowHeight="300px">
     <mat-grid-tile>
-      <div class="controller-container">
-        <input type="hidden" formControlName="$key">
+      <div class="control-container">
         <mat-form-field>
-          <input formControlName="email" matInput placeholder="Email">
+          <input formControlName="email" matInput placeholder="Email/login*">
+          <mat-error *ngIf="registerForm.controls['email'].errors?.required">This field is required.</mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].errors?.email">Invalid email format.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="password" matInput placeholder="Password">
+          <input formControlName="password" type="password" matInput placeholder="Password*">
+          <mat-error *ngIf="registerForm.controls['password'].errors?.required">This field is required.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="confirmPassword" matInput placeholder="Repeat password">
+          <input formControlName="confirmPassword" type="password" matInput placeholder="Repeat password*">
+          <mat-error>Provided password didn't match.</mat-error>
         </mat-form-field>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div class="button-row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Submit</button>
-        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+      <div class="control-container">
+        <mat-form-field>
+          <input formControlName="uniqueAccName" matInput placeholder="Unique account name*">
+          <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="descAccName" matInput placeholder="Descriptive account name*">
+          <mat-error>This field is required.</mat-error>
+        </mat-form-field>
+        <div class="add-bottom-padding">
+          <mat-radio-group formControlName="gender">
+              <mat-radio-button value="1">Male</mat-radio-button>
+              <mat-radio-button value="2">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <mat-form-field>
+          <mat-select formControlName="type" placeholder="Account status">
+              <mat-option value="PUBLIC">Public</mat-option>
+              <mat-option value="PRIVATE">Private</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          <button mat-raised-button color="primary" style="margin-left: 7px" type="submit" [disabled]="registerForm.invalid">Submit</button>
+        </div>
       </div>
+
     </mat-grid-tile>
   </mat-grid-list>
 </form>

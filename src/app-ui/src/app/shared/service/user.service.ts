@@ -15,6 +15,10 @@ export class UserService {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    gender: new FormControl(1),
+    uniqueAccName: new FormControl(''),
+    descAccName: new FormControl(''),
+    status: new FormControl(1)
   });
 
   registerUser(user: any): Observable<any> {

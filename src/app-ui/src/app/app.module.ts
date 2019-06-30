@@ -9,7 +9,7 @@ import {AdminPanelComponent} from './admin/admin-panel/admin-panel.component';
 import { WallComponent } from './post/wall/wall.component';
 import { UserPanelComponent } from './users/user-panel/user-panel.component';
 
-import {UserService} from "./service/user.service";
+import {UserService} from "./shared/service/user.service";
 import {AuthGuard} from "./authentication/auth.guard";
 import {LoginAuthService} from "./authentication/login-auth.service";
 

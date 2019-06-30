@@ -19,6 +19,7 @@ public class User implements UserDetails {
     private static final long serialVersionUID = 641597340859104987L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
     @Column(nullable = false, unique = true)
     private String email;
@@ -173,6 +174,8 @@ public class User implements UserDetails {
     public void setRole(UserRole role) {
         this.role = role;
     }
+
+
 
     @Override
     public String toString() {
