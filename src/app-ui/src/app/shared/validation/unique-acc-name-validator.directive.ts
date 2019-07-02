@@ -3,27 +3,25 @@ import {AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS, ValidationErrors} 
 import {Observable} from "rxjs";
 import {UserService} from "../service/user.service";
 
-
 @Directive({
-  selector: '[uniqueLogin]',
-  providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: UniqueLoginValidatorDirective, multi: true}]
+  selector: '[uniqueAccName]',
+  providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: UniqueAccNameValidatorDirective, multi: true}]
 })
-export class UniqueLoginValidatorDirective implements AsyncValidator {
+export class UniqueAccNameValidatorDirective implements AsyncValidator {
 
   constructor(private userService: UserService) {
   }
 
-   validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+  validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
 
     return new Promise((resolve, reject) => {
       let result;
-      this.userService.checkLogin(control.value).subscribe(response => {
+      this.userService.checkUniqueAccName(control.value).subscribe(response => {
         result = response;
         if (result === false) {
-          resolve({uniqueLogin: true})
+          resolve({uniqueAccName: true})
         } else resolve(null)
       });
     })
   }
-
 }

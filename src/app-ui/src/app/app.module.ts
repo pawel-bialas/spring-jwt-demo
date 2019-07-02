@@ -9,7 +9,6 @@ import {AdminPanelComponent} from './admin/admin-panel/admin-panel.component';
 import { WallComponent } from './post/wall/wall.component';
 import { UserPanelComponent } from './users/user-panel/user-panel.component';
 import { UniqueLoginValidatorDirective } from './shared/validation/unique-login-validator.directive';
-import { UniqueUniqueAccNameValidatorDirective } from './shared/validation/unique-unique-acc-name-validator.directive';
 
 import {UserService} from "./shared/service/user.service";
 import {AuthGuard} from "./authentication/auth.guard";
@@ -23,6 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MaterialModule} from "./material/material.module";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {UniqueAccNameValidatorDirective} from "./shared/validation/unique-acc-name-validator.directive";
 
 
 @NgModule({
@@ -35,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserPanelComponent,
     WallComponent,
     UniqueLoginValidatorDirective,
-    UniqueUniqueAccNameValidatorDirective
+    UniqueAccNameValidatorDirective
+
   ],
   imports: [
     BrowserModule,

@@ -99,9 +99,9 @@ public class UserService {
 
     public User findUserByUniqueAccName(String uniqueAccName) {
         try {
-            User user = userRepository.findByUniqueAccName(uniqueAccName);
-            if (user != null) {
-                return user;
+            Optional<User> user = userRepository.findByUniqueAccName(uniqueAccName);
+            if (user.isPresent()) {
+                return user.get();
             } else
                 LOG.warning("Error");
             throw new EntityNotFoundException(SystemMessage.userNotFoundError);
@@ -147,11 +147,11 @@ public class UserService {
 
     public Boolean availableLogin(String login) {
         User user = userRepository.findByEmailIgnoreCase(login);
-        return user != null;
+        return user == null;
     }
 
     public Boolean availableUniqueAccName(String uniqueAccName) {
-        User user = userRepository.findByUniqueAccName(uniqueAccName);
-        return user != null;
+        Optional<User> byUniqueAccName = userRepository.findByUniqueAccName(uniqueAccName);
+        return !byUniqueAccName.isPresent();
     }
 }

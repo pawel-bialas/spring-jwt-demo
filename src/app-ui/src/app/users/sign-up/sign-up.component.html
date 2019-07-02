@@ -14,11 +14,13 @@
           <input
             formControlName="email"
             matInput placeholder="Email/login*"
+            uniqueLogin
             matTooltip="Your email address serves as a login, and it can not be changed!"
             matTooltipPosition="after"
           >
           <mat-error *ngIf="registerForm.controls['email'].hasError('required')">This field is required.</mat-error>
           <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Invalid email format.</mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('uniqueLogin')">This login is already in use.</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
@@ -71,10 +73,12 @@
           <input
             formControlName="uniqueAccName"
             matInput placeholder="Unique account name*"
+            uniqueAccName
             matTooltip="Each of your posts will be associated with this unique name. You can not change it in the future."
             matTooltipPosition="after"
           >
-          <mat-error>This field is required.</mat-error>
+          <mat-error *ngIf="registerForm.controls['uniqueAccName'].hasError('uniqueAccName')">This name is already in use.</mat-error>
+          <mat-error *ngIf="!registerForm.controls['uniqueAccName'].hasError('uniqueAccName')">This field is required.</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
