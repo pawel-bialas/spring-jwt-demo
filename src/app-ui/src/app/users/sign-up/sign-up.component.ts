@@ -3,10 +3,8 @@ import {UserService} from "../../shared/service/user.service";
 import {LoginAuthService} from "../../authentication/login-auth.service";
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {CustomValidators} from "./custom-validators";
+import {CustomValidators} from "../../shared/validation/custom-validators";
 
-
-const {patternValidator} = CustomValidators;
 
 @Component({
   selector: 'sign-up',

@@ -31,10 +31,6 @@ public class UserService {
 
     private Logger LOG = Logger.getLogger(UserService.class.getName());
 
-
-
-
-
     public User saveUser(User user) {
         try {
             if (userRepository.findByEmail(user.getEmail()).isPresent()) {
@@ -103,9 +99,9 @@ public class UserService {
 
     public User findUserByUniqueAccName(String uniqueAccName) {
         try {
-            Optional<User> byUnigueAccName = userRepository.findByUniqueAccName(uniqueAccName);
-            if (byUnigueAccName.isPresent()) {
-                return byUnigueAccName.get();
+            User user = userRepository.findByUniqueAccName(uniqueAccName);
+            if (user != null) {
+                return user;
             } else
                 LOG.warning("Error");
             throw new EntityNotFoundException(SystemMessage.userNotFoundError);
@@ -115,12 +111,7 @@ public class UserService {
                     notFound.getMessage()
             );
         }
-
     }
-
-
-
-
 
     public void deleteAccount () {
 
@@ -152,7 +143,15 @@ public class UserService {
                     notFound.getMessage()
             );
         }
+    }
 
+    public Boolean availableLogin(String login) {
+        User user = userRepository.findByEmailIgnoreCase(login);
+        return user != null;
+    }
 
+    public Boolean availableUniqueAccName(String uniqueAccName) {
+        User user = userRepository.findByUniqueAccName(uniqueAccName);
+        return user != null;
     }
 }

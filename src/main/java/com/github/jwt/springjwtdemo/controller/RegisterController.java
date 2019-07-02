@@ -25,4 +25,13 @@ public class RegisterController {
         }
         return null;
     }
+
+    @PostMapping(value = "/register/login")
+    public ResponseEntity<Boolean> checkLogin (@RequestBody String login) {
+        return new ResponseEntity<>(userService.availableLogin(login), HttpStatus.OK);
+    }
+    @PostMapping(value = "/register/unique-acc-name")
+    public ResponseEntity<Boolean> checkUniqueAccName (@RequestBody String uniqueAccName) {
+        return new ResponseEntity<>(userService.availableUniqueAccName(uniqueAccName), HttpStatus.OK);
+    }
 }

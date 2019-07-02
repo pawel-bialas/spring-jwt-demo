@@ -49,4 +49,18 @@ export class UserService {
     return this.http.get('http://localhost:8082/getuser', {headers: headers});
   }
 
+  checkLogin(login: any): Observable<any> {
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin': "*"});
+    console.log(login);
+    return this.http.post('http://localhost:8082/register/login', login, {headers: headers});
+  }
+
+  checkUniqueAccName(uniqueAccName: any): Observable<any> {
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin': "*"});
+    console.log(uniqueAccName);
+    return this.http.post('http://localhost:8082/register/unique-acc-name', uniqueAccName, {headers: headers});
+  }
+
+
+
 }
