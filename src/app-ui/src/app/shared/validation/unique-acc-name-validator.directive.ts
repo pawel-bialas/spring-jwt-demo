@@ -17,6 +17,7 @@ export class UniqueAccNameValidatorDirective implements AsyncValidator {
     return new Promise((resolve, reject) => {
       let result;
       this.userService.checkUniqueAccName(control.value).subscribe(response => {
+        console.log(response);
         result = response;
         if (result === false) {
           resolve({uniqueAccName: true})

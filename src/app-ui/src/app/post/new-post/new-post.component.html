@@ -1,0 +1,32 @@
+<div class="container">
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <span>Write a new Blog Post</span>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
+</div>
+<div class="container">
+  <div class="new-post-container">
+    <form [formGroup]="registerForm" class="normal-form" (submit)="onSubmit()">
+      <div class="control-container">
+        <mat-form-field>
+          <input
+            formControlName="email"
+            matInput placeholder="Email/login*"
+            uniqueLogin
+            matTooltip="Your email address serves as a login, and it can not be changed!"
+            matTooltipPosition="after"
+          >
+          <mat-error *ngIf="registerForm.controls['email'].hasError('required')">This field is required.</mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Invalid email format.</mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('uniqueLogin')">This login is already in use.
+          </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          <button mat-raised-button color="primary" style="margin-left: 7px" type="submit"
+                  [disabled]="registerForm.invalid">Submit
+          </button>
+        </div>
+
+      </div>

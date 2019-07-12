@@ -96,9 +96,21 @@
           </mat-radio-group>
         </div>
         <mat-form-field>
-          <mat-select formControlName="type" placeholder="Account status">
-            <mat-option value="PUBLIC">Public</mat-option>
-            <mat-option value="PRIVATE">Private</mat-option>
+
+          <mat-select
+            formControlName="type"
+            placeholder="Account status"
+          >
+            <mat-option
+              value="PUBLIC"
+              matTooltip="TOOLTIP"
+              matTooltipPosition="after"
+            >Public</mat-option>
+            <mat-option
+              value="PRIVATE"
+              matTooltip="TOOLTIP"
+              matTooltipPosition="after"
+            >Private</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="button-row">

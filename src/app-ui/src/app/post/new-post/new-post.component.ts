@@ -1,0 +1,51 @@
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {LoginAuthService} from "../../authentication/login-auth.service";
+import {Router} from "@angular/router";
+
+@Component({
+  selector: 'new-post',
+  templateUrl: './new-post.component.html',
+  styleUrls: ['./new-post.component.css']
+})
+export class NewPostComponent implements OnInit {
+
+  public newPostForm: FormGroup;
+
+  public post: any = {};
+
+  constructor(private authService: LoginAuthService, private router: Router, private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+  }
+
+  createPostForm(): FormGroup {
+    return this.fb.group({
+      content: ['', Validators.required]
+    })
+  }
+
+  onClear() {
+    this.createPostForm().reset();
+    this.initializeForm();
+  }
+
+  initializeForm() {
+    this.newPostForm.setValue({
+      content: ''
+    })
+  }
+
+  onSubmit() {
+    if (this.newPostForm.valid){
+      this.saveNewPost(this.newPostForm.value);
+      this.newPostForm.reset();
+      this.initializeForm();
+    }
+  }
+
+  private saveNewPost(post: any) {
+
+  }
+}
