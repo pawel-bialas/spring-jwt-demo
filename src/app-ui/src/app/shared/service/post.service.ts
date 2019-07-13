@@ -16,4 +16,8 @@ export class PostService {
     return this.http.get('http://localhost:8082/post/get-all',{headers: headers});
   }
 
+  saveNewPost (): Observable<any> {
+    return null;
+  }
+
 }

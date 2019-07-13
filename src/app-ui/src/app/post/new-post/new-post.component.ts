@@ -11,10 +11,13 @@ import {Router} from "@angular/router";
 export class NewPostComponent implements OnInit {
 
   public newPostForm: FormGroup;
-
+  public loggedUser: any = {};
   public post: any = {};
 
   constructor(private authService: LoginAuthService, private router: Router, private fb: FormBuilder) {
+    this.authService.isLoggedIn();
+    this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.newPostForm = this.createPostForm();
   }
 
   ngOnInit() {
