@@ -28,6 +28,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 
 
@@ -44,7 +47,8 @@ import 'hammerjs';
     WallComponent,
     UniqueLoginValidatorDirective,
     UniqueAccNameValidatorDirective,
-    NewPostComponent
+    NewPostComponent,
+    MainNavComponent
 
   ],
   imports: [
@@ -57,6 +61,12 @@ import 'hammerjs';
     NgbModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
 
 
   ],
