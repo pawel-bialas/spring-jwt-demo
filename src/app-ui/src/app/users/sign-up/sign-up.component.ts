@@ -4,7 +4,6 @@ import {LoginAuthService} from "../../authentication/login-auth.service";
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "../../shared/validation/custom-validators";
-import {UniqueLoginValidatorDirective} from "../../shared/validation/unique-login-validator.directive";
 
 
 @Component({
