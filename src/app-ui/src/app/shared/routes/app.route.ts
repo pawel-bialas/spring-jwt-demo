@@ -5,6 +5,7 @@ import {SignUpComponent} from "../../users/sign-up/sign-up.component";
 import {AdminPanelComponent} from "../../admin/admin-panel/admin-panel.component";
 import {AuthGuard} from "../../authentication/auth.guard";
 import {UserPanelComponent} from "../../users/user-panel/user-panel.component";
+import {NewPostComponent} from "../../post/new-post/new-post.component";
 
 
 export const ROUTES: Routes = [
@@ -13,6 +14,7 @@ export const ROUTES: Routes = [
   {path: "signup", component: SignUpComponent},
   {path: "admin-panel", component: AdminPanelComponent, canActivate: [AuthGuard]},
   {path: "user-panel", component: UserPanelComponent, canActivate: [AuthGuard]},
+  {path: "new-post", component: NewPostComponent, canActivate: [AuthGuard]},
 
   {path: "**", pathMatch: "full", redirectTo: "home"}
 ];

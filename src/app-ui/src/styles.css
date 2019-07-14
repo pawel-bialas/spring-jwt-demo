@@ -4,26 +4,28 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+html,
+body {
+  height: 100%;
+}
+
+body{
+  margin: 0;
+}
+
 .container {
   justify-content: center;
   display: flex;
   margin: 0 40px;
 }
 
-.material-icons {
-  display: inline-flex;
-  vertical-align: middle;
-}
-
-.fill-remaining-space {
+.spacer {
   flex: 1 1 auto;
 }
 
-.register-container {
-  width: 500px;
-  justify-content: center;
-
-
+.material-icons {
+  display: inline-flex;
+  vertical-align: middle;
 }
 
 .form.normal-form {
@@ -33,7 +35,6 @@
 .control-container{
   justify-content: center;
   width: 100%;
-
 
 }
 
