@@ -10,13 +10,18 @@
     <form [formGroup]="newPostForm" class="normal-form" (submit)="onSubmit()">
       <div class="control-container">
         <mat-form-field>
-          <input
-            id="new-post"
-            formControlName="content"
-            matInput placeholder="Post content*"
-            matTooltip="TOOLTIP"
-            matTooltipPosition="after"
-          >
+          <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+          <textarea class="new-post-form"
+                 #message
+                 maxlength="256"
+                 matInput
+                 id="new-post"
+                 formControlName="content"
+                 placeholder="Post content*"
+                 matTooltip="TOOLTIP"
+                 matTooltipPosition="after"
+          ></textarea>
           <mat-error *ngIf="newPostForm.controls['content'].hasError('required')">Post content can not be empty.
           </mat-error>
         </mat-form-field>

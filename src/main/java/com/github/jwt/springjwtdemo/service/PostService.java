@@ -42,7 +42,7 @@ public class PostService {
 
     public void saveNewPost(Post post, Principal principal) {
         try {
-            Long accountId = userRepository.findByUniqueAccName(principal.getName()).get().getId();
+            Long accountId = userRepository.findByEmailIgnoreCase(principal.getName()).getId();
             if (accountId != null) {
                 post.setStatus(ContentStatus.NEW);
                 post.setType(ContentType.BLOG_POST);

@@ -16,8 +16,13 @@ export class PostService {
     return this.http.get('http://localhost:8082/post/get-all',{headers: headers});
   }
 
-  saveNewPost (): Observable<any> {
-    return null;
+
+  saveNewPost (token: any, post: any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token});
+    console.log(headers);
+    console.log(token);
+    console.log(post);
+    return this.http.post('http://localhost:8082/post/new-post', post,{headers: headers});
   }
 
 }
