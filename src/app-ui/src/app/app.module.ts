@@ -10,6 +10,7 @@ import { WallComponent } from './post/wall/wall.component';
 import { UserPanelComponent } from './users/user-panel/user-panel.component';
 import { NewPostComponent } from './post/new-post/new-post.component';
 import {ErrorComponent} from "./shared/error/error.component";
+import { MainNavComponent } from './main-nav/main-nav.component';
 
 import { UniqueLoginValidatorDirective } from './shared/validation/unique-login-validator.directive';
 import {UniqueAccNameValidatorDirective} from "./shared/validation/unique-acc-name-validator.directive";
@@ -18,6 +19,7 @@ import {UniqueAccNameValidatorDirective} from "./shared/validation/unique-acc-na
 import {UserService} from "./shared/service/user.service";
 import {AuthGuard} from "./authentication/auth.guard";
 import {LoginAuthService} from "./authentication/login-auth.service";
+import {GlobalErrorHandlerService} from "./shared/service/global-error-handler.service";
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
@@ -29,10 +31,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
-import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import {GlobalErrorHandlerService} from "./shared/service/global-error-handler.service";
+
 
 
 
@@ -66,13 +66,6 @@ import {GlobalErrorHandlerService} from "./shared/service/global-error-handler.s
     ReactiveFormsModule,
     FlexLayoutModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-
-
   ],
   exports: [
     MaterialModule
@@ -86,6 +79,9 @@ import {GlobalErrorHandlerService} from "./shared/service/global-error-handler.s
   ],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    ErrorComponent
   ]
 })
 export class AppModule { }
