@@ -2,6 +2,7 @@ package com.github.jwt.springjwtdemo.utils;
 
 public class SystemMessage {
 
+    public final static String serverError = "Server error";
     public final static String postNotFoundError = "Post not found.";
     public final static String postsListNotFoundError = "Posts not found.";
     public final static String unauthorizedRequestError = "Unauthorized request by user: ";

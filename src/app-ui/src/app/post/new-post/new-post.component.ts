@@ -42,7 +42,7 @@ export class NewPostComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.newPostForm.valid){
+    if (this.newPostForm.valid) {
       console.log(this.newPostForm.value);
       this.saveNewPost(this.newPostForm.value);
       this.newPostForm.reset();
@@ -51,11 +51,11 @@ export class NewPostComponent implements OnInit {
   }
 
   private saveNewPost(post: any) {
-    this.postService.saveNewPost(this.loggedUser['token'],post).subscribe(response => {
-
-        if (response === null) {
-          this.router.navigate(["/home"]);
-        }
+    this.postService.saveNewPost(this.loggedUser['token'], post).subscribe(response => {
+      console.log(response);
+      if (response.message === 'Post saved!') {
+        this.router.navigate(["/home"]);
+      }
     });
   }
 }

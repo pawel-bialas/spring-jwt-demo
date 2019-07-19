@@ -11,7 +11,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     const router = this.injector.get(Router);
     
     if (error instanceof HttpErrorResponse) {
-      console.error('Backend returned: ', error.status);
+      console.error('Server returned: ', error.status);
       console.error('Response body: ', error.message);
     } else {
       console.error('An error occurred: ', error.message);

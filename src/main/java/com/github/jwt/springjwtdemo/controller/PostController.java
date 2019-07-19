@@ -1,11 +1,15 @@
 package com.github.jwt.springjwtdemo.controller;
 
+import com.github.jwt.springjwtdemo.domain.Response;
 import com.github.jwt.springjwtdemo.model.Post;
 import com.github.jwt.springjwtdemo.service.PostService;
+import com.github.jwt.springjwtdemo.utils.SystemMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +29,12 @@ public class PostController {
 
     @PostMapping(path = "/post/new-post")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody()
-    public void newPost(@RequestBody Post post, Principal principal, HttpServletResponse response) {
-        postService.saveNewPost(post, principal);
-        response.setStatus(200);
+    public ResponseEntity<Response> newPost(@RequestBody Post post, Principal principal) {
+        Post dbPost = postService.saveNewPost(post, principal);
+        if (dbPost != null) {
+            return new ResponseEntity<>(new Response("Post saved!"),HttpStatus.CREATED);
+        }
+        return null;
     }
 
     @PatchMapping(path = "/post/edit-post/{id}")

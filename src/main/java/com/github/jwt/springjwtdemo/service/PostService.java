@@ -40,7 +40,7 @@ public class PostService {
         this.userRepository = userRepository;
     }
 
-    public void saveNewPost(Post post, Principal principal) {
+    public Post saveNewPost(Post post, Principal principal) {
         try {
             Long accountId = userRepository.findByEmailIgnoreCase(principal.getName()).getId();
             if (accountId != null) {
@@ -49,6 +49,7 @@ public class PostService {
                 post.setAccountId(accountId);
                 postRepository.save(post);
                 LOG.info(SystemMessage.newBlogPostMsg + principal.getName());
+                return post;
             } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);
         } catch (EntityNotFoundException e) {
             LOG.info(SystemMessage.badRequestError + principal.getName());
