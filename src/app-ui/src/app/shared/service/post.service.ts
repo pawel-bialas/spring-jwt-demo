@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {observable, Observable} from "rxjs";
+import {observeOn} from "rxjs/operators";
+import {parseHttpResponse} from "selenium-webdriver/http";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +21,8 @@ export class PostService {
 
   saveNewPost (token: any, post: any): Observable<any> {
     const headers = new HttpHeaders({'Authorization': 'Bearer ' + token});
-    console.log(headers);
-    console.log(token);
-    console.log(post);
     return this.http.post('http://localhost:8082/post/new-post', post,{headers: headers});
   }
+
 
 }

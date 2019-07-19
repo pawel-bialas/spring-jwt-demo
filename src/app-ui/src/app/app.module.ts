@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {SignUpComponent} from './users/sign-up/sign-up.component';
@@ -9,6 +9,7 @@ import {AdminPanelComponent} from './admin/admin-panel/admin-panel.component';
 import { WallComponent } from './post/wall/wall.component';
 import { UserPanelComponent } from './users/user-panel/user-panel.component';
 import { NewPostComponent } from './post/new-post/new-post.component';
+import {ErrorComponent} from "./shared/error/error.component";
 
 import { UniqueLoginValidatorDirective } from './shared/validation/unique-login-validator.directive';
 import {UniqueAccNameValidatorDirective} from "./shared/validation/unique-acc-name-validator.directive";
@@ -31,6 +32,8 @@ import 'hammerjs';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {GlobalErrorHandlerService} from "./shared/service/global-error-handler.service";
+
 
 
 
@@ -48,7 +51,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     UniqueLoginValidatorDirective,
     UniqueAccNameValidatorDirective,
     NewPostComponent,
-    MainNavComponent
+    MainNavComponent,
+    ErrorComponent
 
   ],
   imports: [
@@ -76,7 +80,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
   providers: [
     UserService,
     AuthGuard,
-    LoginAuthService
+    LoginAuthService,
+    GlobalErrorHandlerService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService}
   ],
   bootstrap: [
     AppComponent

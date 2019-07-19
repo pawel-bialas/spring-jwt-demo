@@ -52,8 +52,10 @@ export class NewPostComponent implements OnInit {
 
   private saveNewPost(post: any) {
     this.postService.saveNewPost(this.loggedUser['token'],post).subscribe(response => {
-        console.log(response);
-        this.router.navigate(["/home"]);
+
+        if (response === null) {
+          this.router.navigate(["/home"]);
+        }
     });
   }
 }

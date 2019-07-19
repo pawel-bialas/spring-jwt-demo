@@ -4,9 +4,11 @@ import com.github.jwt.springjwtdemo.model.Post;
 import com.github.jwt.springjwtdemo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
 
@@ -24,9 +26,10 @@ public class PostController {
     @PostMapping(path = "/post/new-post")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.CREATED)
-    public void newPost(@RequestBody Post post,
-                        Principal principal) {
+    @ResponseBody()
+    public void newPost(@RequestBody Post post, Principal principal, HttpServletResponse response) {
         postService.saveNewPost(post, principal);
+        response.setStatus(200);
     }
 
     @PatchMapping(path = "/post/edit-post/{id}")
