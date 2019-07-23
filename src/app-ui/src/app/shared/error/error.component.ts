@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogConfig} from "@angular/material";
+
 
 @Component({
   selector: 'app-error',
@@ -8,7 +8,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 })
 export class ErrorComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit() {
 

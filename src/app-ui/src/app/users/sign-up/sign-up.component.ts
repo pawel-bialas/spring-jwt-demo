@@ -78,7 +78,6 @@ export class SignUpComponent implements OnInit {
         type: [1]
       },
       {
-        // check whether our password and confirm password match
         validator: CustomValidators.passwordMatchValidator
       });
   }
@@ -96,6 +95,7 @@ export class SignUpComponent implements OnInit {
   onClear() {
     this.registerForm.reset();
     this.initializeForm();
+    this.router.navigate(['/sign-up'])
   };
 
   initializeForm() {
@@ -107,13 +107,14 @@ export class SignUpComponent implements OnInit {
       uniqueAccName: '',
       descAccName: '',
       type: 1
-    })
+    });
+    this.registerForm.markAsPristine();
+    this.registerForm.markAsUntouched();
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
       this.registerUser(this.registerForm.value);
-      this.registerForm.reset();
       this.initializeForm();
     }
   }
