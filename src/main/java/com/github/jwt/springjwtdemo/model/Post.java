@@ -11,6 +11,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     private String content;
     @CreationTimestamp
@@ -21,6 +22,14 @@ public class Post {
     private ContentType type;
     private Long accountId;
     private LocalDateTime editionDate;
+
+    @OneToOne
+    @JoinColumn(name = "accountId", referencedColumnName = "id", insertable = false, updatable = false)
+    private User user;
+
+    @OneToOne
+    @JoinColumn (name = )
+    private String uniqueAccName;
 
     public Post() {
 
@@ -80,5 +89,13 @@ public class Post {
 
     public void setEditionDate(LocalDateTime editionDate) {
         this.editionDate = editionDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
