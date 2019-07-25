@@ -1,6 +1,18 @@
-<p>
-  Home works!
-  <i class="fas fa-list-ul"></i>
-</p>
+<div class="container">
+  <mat-toolbar>
+    <span class="spacer"></span>
+    <span>All public blog_posts</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+</div>
+
+<div class="container">
+  <div class="post window"
+  *ngFor="let post of blogPosts"
+  >
+    <span style="display: block">{{post['content']}}</span>
+  </div>
+
+</div>
 
 

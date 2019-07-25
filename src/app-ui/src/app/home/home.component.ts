@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginAuthService} from "../authentication/login-auth.service";
+import {PostService} from "../shared/service/post.service";
 
 
 @Component({
@@ -9,16 +10,15 @@ import {LoginAuthService} from "../authentication/login-auth.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: LoginAuthService) { }
+  constructor(private authService: LoginAuthService, private postService: PostService) { }
+
+  blogPosts: any[];
 
   ngOnInit() {
+    this.postService.getAllPosts().subscribe((response) => {
+      this.blogPosts = response
+    })
   }
 
-  loginWitGoogle() {
-    console.log('worksG')
-  }
 
-  loginWitTwitter() {
-    console.log('worksTT')
-  }
 }
