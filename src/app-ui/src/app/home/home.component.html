@@ -7,10 +7,18 @@
 </div>
 
 <div class="container">
-  <div class="post window"
+  <div class="post-window"
   *ngFor="let post of blogPosts"
   >
-    <span style="display: block">{{post['content']}}</span>
+    <div class="post-author">
+      <span class="author-avatar">{{post['user']['avatarId']}}</span>
+      <div class="spacer"></div>
+      <span class="author-desc">{{post['user']['descAccName']}}</span>
+      <span class="author-unique">@{{post['user']['uniqueAccName']}}</span>
+    </div>
+    <div class="post-content">
+      <span></span>
+    </div>
   </div>
 
 </div>

@@ -1,0 +1,32 @@
+
+.post-window {
+  width: 459px;
+  height: 180px;
+  padding: 5px 10px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: justify;
+}
+
+.post-author {
+  width: 30%;
+  margin: 5px;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.author-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  border: solid black 3px;
+}
+
+.author-desc {
+  font-weight: bolder;
+  font-size: 22px;
+}

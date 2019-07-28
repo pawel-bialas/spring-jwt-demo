@@ -41,7 +41,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AccountType type;
     @Enumerated(EnumType.STRING)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private UserRole role;
     private Long avatarId;
 
