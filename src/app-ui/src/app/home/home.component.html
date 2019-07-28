@@ -15,9 +15,11 @@
       <div class="spacer"></div>
       <span class="author-desc">{{post['user']['descAccName']}}</span>
       <span class="author-unique">@{{post['user']['uniqueAccName']}}</span>
+      <div class="spacer"></div>
+      <span class="author-join-date">Joined on{{formatJoinDate(post['user']['creationDate'])}}</span>
     </div>
     <div class="post-content">
-      <span></span>
+      <span>posted</span>
     </div>
   </div>
 

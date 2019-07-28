@@ -1,7 +1,7 @@
 
 .post-window {
   width: 459px;
-  height: 180px;
+  height: 240px;
   padding: 5px 10px;
   border: 2px solid black;
   display: flex;
@@ -11,7 +11,7 @@
 }
 
 .post-author {
-  width: 30%;
+  width: 40%;
   margin: 5px;
   padding: 5px 10px;
   display: flex;
@@ -29,4 +29,17 @@
 .author-desc {
   font-weight: bolder;
   font-size: 22px;
+}
+
+.post-content {
+  width: 50%;
+  margin: 5px;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.author-join-date {
+  text-align: left;
+
 }
