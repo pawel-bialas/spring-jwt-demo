@@ -7,21 +7,24 @@
 </div>
 
 <div class="container">
-  <div class="post-window"
-  *ngFor="let post of blogPosts"
-  >
-    <div class="post-author">
-      <span class="author-avatar">{{post['user']['avatarId']}}</span>
-      <div class="spacer"></div>
-      <span class="author-desc">{{post['user']['descAccName']}}</span>
-      <span class="author-unique">@{{post['user']['uniqueAccName']}}</span>
-      <div class="spacer"></div>
-      <span class="author-join-date">Joined on{{formatJoinDate(post['user']['creationDate'])}}</span>
-    </div>
-    <div class="post-content">
-      <span>posted</span>
+  <div class="all-posts">
+    <div class="post-window"
+         *ngFor="let post of blogPosts"
+    >
+      <div class="post-author">
+        <span class="author-avatar">{{post['user']['avatarId']}}</span>
+        <div class="spacer"></div>
+        <span class="author-desc">{{post['user']['descAccName']}}</span>
+        <span class="author-unique">@{{post['user']['uniqueAccName']}}</span>
+        <div class="spacer"></div>
+        <span class="author-join-date">Joined on{{formatJoinDate(post['user']['creationDate'])}}</span>
+      </div>
+      <div class="post-content">
+        <span>posted {{formatCreationDate(post['creationDate'])}}</span>
+      </div>
     </div>
   </div>
+
 
 </div>
 
