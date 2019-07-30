@@ -22,13 +22,10 @@ public class User implements UserDetails {
     private static final long serialVersionUID = 641597340859104987L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
     @Column(nullable = false, unique = true)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;
     @Column(nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @Column(nullable = false, unique = true)
     private String uniqueAccName;
@@ -36,7 +33,6 @@ public class User implements UserDetails {
     @CreationTimestamp
     private LocalDateTime creationDate;
     @Enumerated(EnumType.STRING)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private UserStatus status;
     @Enumerated(EnumType.STRING)
     private AccountType type;

@@ -1,5 +1,6 @@
 package com.github.jwt.springjwtdemo.model;
 
+import com.github.jwt.springjwtdemo.projection.UserExcerpt;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -13,19 +14,25 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(name = "content")
     private String content;
     @CreationTimestamp
+    @Column(name = "publication_date")
     private LocalDateTime creationDate;
     @Enumerated(EnumType.STRING)
+    @Column(name = "content_status")
     private ContentStatus status;
     @Enumerated(EnumType.STRING)
+    @Column(name = "content_type")
     private ContentType type;
+    @Column(name = "author_id")
     private Long accountId;
+    @Column(name = "edition_date")
     private LocalDateTime editionDate;
 
     @OneToOne
     @JoinColumn(name = "accountId", referencedColumnName = "id", insertable = false, updatable = false)
-    private User user;
+    private UserExcerpt user;
 
     public Post() {
 
@@ -87,11 +94,11 @@ public class Post {
         this.editionDate = editionDate;
     }
 
-    public User getUser() {
+    public UserExcerpt getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserExcerpt user) {
         this.user = user;
     }
 }

@@ -5,6 +5,7 @@ import com.github.jwt.springjwtdemo.model.ContentStatus;
 import com.github.jwt.springjwtdemo.model.ContentType;
 import com.github.jwt.springjwtdemo.model.Post;
 import com.github.jwt.springjwtdemo.model.User;
+import com.github.jwt.springjwtdemo.projection.PostExcerpt;
 import com.github.jwt.springjwtdemo.repository.PostRepository;
 import com.github.jwt.springjwtdemo.repository.UserRepository;
 import com.github.jwt.springjwtdemo.utils.SystemMessage;
@@ -60,12 +61,10 @@ public class PostService {
         }
     }
 
-    public List<Post> findAllPublicPosts() {
+    public List<PostExcerpt> findAllPublicPosts() {
 
-        List<Post> allPosts = postRepository.findAll();
-        return allPosts.stream()
-                .filter(post -> !post.getStatus().equals(ContentStatus.DELETED))
-                .collect(Collectors.toList());
+        return postRepository.findAllBy();
+
     }
 
     public void deletePost(Long postId, Principal principal) {

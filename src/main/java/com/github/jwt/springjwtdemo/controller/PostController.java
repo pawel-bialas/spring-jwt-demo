@@ -2,6 +2,7 @@ package com.github.jwt.springjwtdemo.controller;
 
 import com.github.jwt.springjwtdemo.domain.Response;
 import com.github.jwt.springjwtdemo.model.Post;
+import com.github.jwt.springjwtdemo.projection.PostExcerpt;
 import com.github.jwt.springjwtdemo.service.PostService;
 import com.github.jwt.springjwtdemo.utils.SystemMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class PostController {
 
     @GetMapping(path = "/post/get-all")
     @ResponseStatus(HttpStatus.OK)
-    public List<Post> getAllPublicPosts() {
+    public List<PostExcerpt> getAllPublicPosts() {
         return postService.findAllPublicPosts();
     }
 

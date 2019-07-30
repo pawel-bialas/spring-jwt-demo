@@ -2,6 +2,7 @@ package com.github.jwt.springjwtdemo.controller;
 
 import com.github.jwt.springjwtdemo.model.Post;
 import com.github.jwt.springjwtdemo.model.User;
+import com.github.jwt.springjwtdemo.projection.PostExcerpt;
 import com.github.jwt.springjwtdemo.service.AdminService;
 import com.github.jwt.springjwtdemo.service.PostService;
 import com.github.jwt.springjwtdemo.service.UserService;
@@ -41,7 +42,7 @@ public class AdminController {
     @GetMapping(path = "/admin/find-all-posts")
     @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.OK)
-    public List<Post> adminFindAllPosts() {
+    public List<PostExcerpt> adminFindAllPosts() {
         return postService.findAllPublicPosts();
     }
 
