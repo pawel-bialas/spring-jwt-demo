@@ -32,7 +32,7 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "accountId", referencedColumnName = "id", insertable = false, updatable = false)
-    private UserExcerpt user;
+    private User user;
 
     public Post() {
 
@@ -94,11 +94,11 @@ public class Post {
         this.editionDate = editionDate;
     }
 
-    public UserExcerpt getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserExcerpt user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

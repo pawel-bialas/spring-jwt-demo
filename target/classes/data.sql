@@ -1,7 +1,7 @@
 insert into users (
     id,
     avatar_id,
-    creation_date,
+    register_date,
     desc_acc_name,
     email,
     password,

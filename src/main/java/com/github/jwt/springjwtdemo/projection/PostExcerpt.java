@@ -13,6 +13,5 @@ public interface PostExcerpt {
     String getContent();
     LocalDateTime getCreationDate();
     LocalDateTime getEditionDate();
-    User getUser();
-
+    
 }

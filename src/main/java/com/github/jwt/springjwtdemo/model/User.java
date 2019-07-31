@@ -1,8 +1,5 @@
 package com.github.jwt.springjwtdemo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,7 +28,7 @@ public class User implements UserDetails {
     private String uniqueAccName;
     private String descAccName;
     @CreationTimestamp
-    private LocalDateTime creationDate;
+    private LocalDateTime registerDate;
     @Enumerated(EnumType.STRING)
     private UserStatus status;
     @Enumerated(EnumType.STRING)
@@ -40,26 +37,6 @@ public class User implements UserDetails {
     private UserRole role;
     private Long avatarId;
 
-
-    public User(String email,
-                String password,
-                String uniqueAccName,
-                String descAccName,
-                LocalDateTime creationDate,
-                UserStatus status,
-                AccountType type,
-                UserRole role,
-                Long avatarId) {
-        this.email = email;
-        this.password = password;
-        this.uniqueAccName = uniqueAccName;
-        this.descAccName = descAccName;
-        this.creationDate = creationDate;
-        this.status = status;
-        this.type = type;
-        this.role = role;
-        this.avatarId = avatarId;
-    }
 
     public User() {
 
@@ -137,12 +114,12 @@ public class User implements UserDetails {
         this.descAccName = descAccName;
     }
 
-    public LocalDateTime getCreationDate() {
-        return creationDate;
+    public LocalDateTime getRegisterDate() {
+        return registerDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setRegisterDate(LocalDateTime registerDate) {
+        this.registerDate = registerDate;
     }
 
     public UserStatus getStatus() {
@@ -187,7 +164,7 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", uniqueAccName='" + uniqueAccName + '\'' +
                 ", descAccName='" + descAccName + '\'' +
-                ", creationDate=" + creationDate +
+                ", registerDate=" + registerDate +
                 ", status=" + status +
                 ", type=" + type +
                 ", role=" + role +
