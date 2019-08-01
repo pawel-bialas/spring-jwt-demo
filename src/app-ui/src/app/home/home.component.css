@@ -29,6 +29,7 @@
   height: 80px;
   border-radius: 100%;
   border: solid black 3px;
+  justify-content: center;
 }
 
 .author-desc {
@@ -46,5 +47,11 @@
 
 .author-join-date {
   text-align: left;
+
+}
+
+.post-options {
+  display: flex;
+  flex-direction: row;
 
 }

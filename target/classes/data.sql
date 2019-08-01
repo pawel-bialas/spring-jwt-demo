@@ -2,13 +2,13 @@ insert into users (
     id,
     avatar_id,
     register_date,
-    desc_acc_name,
+    descriptive_account_name,
     email,
     password,
-    role,
-    status,
-    type,
-    unique_acc_name)
+    user_role,
+    user_status,
+    account_type,
+    unique_account_name)
 values (
            1,
            1,

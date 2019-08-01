@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.time.LocalDateTime;
 
-@Projection(name = "userExcerpt", types = User.class)
+//@Projection(name = "userExcerpt", types = User.class)
 public interface UserExcerpt {
 
     Long getId();
@@ -17,7 +17,7 @@ public interface UserExcerpt {
 
     String getDescAccName();
 
-    LocalDateTime getCreationDate();
+    LocalDateTime getRegisterDate();
 
     UserStatus getStatus();
 

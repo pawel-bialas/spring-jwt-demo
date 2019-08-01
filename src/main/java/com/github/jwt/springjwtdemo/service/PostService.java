@@ -46,7 +46,7 @@ public class PostService {
             if (accountId != null) {
                 post.setStatus(ContentStatus.NEW);
                 post.setType(ContentType.BLOG_POST);
-                post.setAccountId(accountId);
+                post.setUserId(accountId);
                 postRepository.save(post);
                 LOG.info(SystemMessage.newBlogPostMsg + principal.getName());
                 return post;
@@ -62,14 +62,14 @@ public class PostService {
 
     public List<PostExcerpt> findAllPublicPosts() {
 
-        return postRepository.findAllBy();
+        return (List<PostExcerpt>) postRepository.getAllBy();
 
     }
 
     public void deletePost(Long postId, Principal principal) {
         try {
             Long deletingAccountId = userRepository.findByUniqueAccName(principal.getName()).get().getId();
-            Long authorAccountId = postRepository.findById(postId).get().getAccountId();
+            Long authorAccountId = postRepository.findById(postId).get().getUserId();
             Long currentPostId = postRepository.findById(postId).get().getId();
             if (Objects.equals(authorAccountId, deletingAccountId)) {
                 if (currentPostId != null) {
@@ -93,7 +93,7 @@ public class PostService {
         try {
             Long currentPost = postRepository.getOne(postId).getId();
             if (currentPost != null) {
-                Long authorAccountId = postRepository.getOne(currentPost).getAccountId();
+                Long authorAccountId = postRepository.getOne(currentPost).getUserId();
                 Long editorAccountId = userRepository.findByUniqueAccName(principal.getName()).get().getId();
                 if (Objects.equals(editorAccountId, authorAccountId)) {
                     editPostContent(postId,content);
@@ -119,7 +119,7 @@ public class PostService {
             Optional<User> byLogin = userRepository.findByEmail(email);
             if (byLogin.isPresent()) {
                 Long userId = byLogin.get().getId();
-                return (ArrayList<Post>) postRepository.findByAccountId(userId);
+                return (ArrayList<Post>) postRepository.findByUserId(userId);
             }
             throw new EntityNotFoundException();
         } catch (EntityNotFoundException e) {

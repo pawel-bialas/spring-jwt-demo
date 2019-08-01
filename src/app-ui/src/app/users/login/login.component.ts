@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
       if (response) {
         if (response['token']) {
           localStorage.setItem('currentUser', JSON.stringify(response));
-          if (response['user']['role'] === 'ADMIN') {
+          if (response['user']['role'] ===  "ADMIN") {
             this.router.navigate(['/admin-panel']);
           }
-          if (response['user']['role'] === 'USER') {
+          if (response['user']['role'] === "USER") {
             this.router.navigate(['/user-panel']);
           }
         }

@@ -12,15 +12,23 @@
          *ngFor="let post of blogPosts"
     >
       <div class="post-author">
-        <span class="author-avatar">{{post['user']['avatarId']}}</span>
+        <span class="author-avatar">
+          <p>ID</p>
+        </span>
         <div class="spacer"></div>
-        <span class="author-desc">{{post['user']['descAccName']}}</span>
-        <span class="author-unique">@{{post['user']['uniqueAccName']}}</span>
+        <span class="author-desc">{{post['descAccName']}}</span>
+        <span class="author-unique">@{{post['uniqueAccName']}}</span>
         <div class="spacer"></div>
-        <span class="author-join-date">Joined on{{formatJoinDate(post['user']['creationDate'])}}</span>
+        <span class="author-join-date">Joined on{{formatJoinDate(post['registerDate'])}}</span>
       </div>
       <div class="post-content">
         <span>posted {{formatCreationDate(post['creationDate'])}}</span>
+        <div class="spacer"></div>
+        <span>{{post['content']}}</span>
+        <div class="spacer"></div>
+        <div class="post-options">
+
+        </div>
       </div>
     </div>
   </div>

@@ -10,10 +10,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
-@Table(name = "Users")
-@Where(clause = "status <> 'BLOCKED'" )
+//@Where(clause = "user_status <> 'BLOCKED'" )
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 641597340859104987L;
@@ -24,19 +24,44 @@ public class User implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false, unique = true)
+    @Column(name = "unique_account_name",nullable = false, unique = true)
     private String uniqueAccName;
+    @Column(name = "descriptive_account_name")
     private String descAccName;
     @CreationTimestamp
+    @Column(name = "register_date")
     private LocalDateTime registerDate;
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_status")
     private UserStatus status;
     @Enumerated(EnumType.STRING)
+    @Column(name = "account_type")
     private AccountType type;
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
     private UserRole role;
+    @Column(name = "avatar_id")
     private Long avatarId;
 
+    public User(String email,
+                String password,
+                String uniqueAccName,
+                String descAccName,
+                LocalDateTime registerDate,
+                UserStatus status,
+                AccountType type,
+                UserRole role,
+                Long avatarId) {
+        this.email = email;
+        this.password = password;
+        this.uniqueAccName = uniqueAccName;
+        this.descAccName = descAccName;
+        this.registerDate = registerDate;
+        this.status = status;
+        this.type = type;
+        this.role = role;
+        this.avatarId = avatarId;
+    }
 
     public User() {
 

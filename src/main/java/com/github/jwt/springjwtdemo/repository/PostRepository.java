@@ -10,11 +10,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-@RepositoryRestResource(excerptProjection = PostExcerpt.class)
+@RepositoryRestResource (excerptProjection = PostExcerpt.class)
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Iterable<Post> findByAccountId (Long id);
+    Iterable<Post> findByUserId (Long id);
     Optional<Post> findById (Long id);
 
-    List<PostExcerpt> findAllBy();
+    Iterable<PostExcerpt> getAllBy();
+
 }

@@ -1,13 +1,12 @@
 package com.github.jwt.springjwtdemo.model;
 
-import com.github.jwt.springjwtdemo.projection.UserExcerpt;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "BlogPosts")
+@Table(name = "blog_posts")
 public class Post {
 
     @Id
@@ -25,18 +24,19 @@ public class Post {
     @Enumerated(EnumType.STRING)
     @Column(name = "content_type")
     private ContentType type;
-    @Column(name = "author_id")
-    private Long accountId;
+    @Column(name = "user_id")
+    private Long userId;
     @Column(name = "edition_date")
     private LocalDateTime editionDate;
 
     @OneToOne
-    @JoinColumn(name = "accountId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 
     public Post() {
 
     }
+
 
     public Long getId() {
         return id;
@@ -58,8 +58,8 @@ public class Post {
         return type;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public Long getUserId() {
+        return userId;
     }
 
     public void setId(Long id) {
@@ -82,8 +82,8 @@ public class Post {
         this.type = type;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public LocalDateTime getEditionDate() {
