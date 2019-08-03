@@ -23,4 +23,8 @@ public class UserObserved {
     private Long observingAccId;
     @CreationTimestamp
     private LocalDateTime creationDate;
+
+    @Version
+    @Column(name = "version")
+    private Integer version;
 }

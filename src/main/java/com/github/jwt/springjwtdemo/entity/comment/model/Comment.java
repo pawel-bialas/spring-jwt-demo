@@ -34,4 +34,8 @@ public class Comment {
     private Long postId;
     private LocalDateTime editionDate;
 
+    @Version
+    @Column(name = "version")
+    private Integer version;
+
 }

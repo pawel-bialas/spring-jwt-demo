@@ -47,6 +47,10 @@ public class User implements UserDetails {
     @Column(name = "avatar_id")
     private Long avatarId;
 
+    @Version
+    @Column(name = "version")
+    private Integer version;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

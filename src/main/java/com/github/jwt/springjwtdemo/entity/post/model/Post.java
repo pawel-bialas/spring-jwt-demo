@@ -35,6 +35,10 @@ public class Post {
     @Column(name = "edition_date")
     private LocalDateTime editionDate;
 
+    @Version
+    @Column(name = "version")
+    private Integer version;
+
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
