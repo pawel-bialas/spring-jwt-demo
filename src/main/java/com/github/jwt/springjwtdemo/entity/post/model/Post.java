@@ -1,11 +1,16 @@
 package com.github.jwt.springjwtdemo.entity.post.model;
 
 import com.github.jwt.springjwtdemo.entity.user.model.User;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "blog_posts")
 public class Post {
@@ -34,72 +39,4 @@ public class Post {
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 
-    public Post() {
-
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public ContentStatus getStatus() {
-        return status;
-    }
-
-    public ContentType getType() {
-        return type;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public void setStatus(ContentStatus status) {
-        this.status = status;
-    }
-
-    public void setType(ContentType type) {
-        this.type = type;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public LocalDateTime getEditionDate() {
-        return editionDate;
-    }
-
-    public void setEditionDate(LocalDateTime editionDate) {
-        this.editionDate = editionDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
