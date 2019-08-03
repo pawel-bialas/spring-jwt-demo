@@ -1,6 +1,6 @@
 import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
-export class CustomValidators {
+export class PasswordValidators {
 
   static patternValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {

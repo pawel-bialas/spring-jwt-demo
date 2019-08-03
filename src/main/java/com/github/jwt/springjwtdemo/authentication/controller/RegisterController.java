@@ -22,16 +22,20 @@ public class RegisterController {
         User dbUser = userService.saveUser(user);
         if (dbUser != null) {
             return new ResponseEntity<>(new Response("User saved!"), HttpStatus.CREATED);
-        }
-        return null;
+        } else return null;
     }
 
     @PostMapping(value = "/register/login")
-    public ResponseEntity<Boolean> checkLogin (@RequestBody String login) {
+    public ResponseEntity<Boolean> checkAvailableLogin(@RequestBody String login) {
         return new ResponseEntity<>(userService.availableLogin(login), HttpStatus.OK);
     }
     @PostMapping(value = "/register/unique-acc-name")
-    public ResponseEntity<Boolean> checkUniqueAccName (@RequestBody String uniqueAccName) {
+    public ResponseEntity<Boolean> checkAvailableUniqueAccName(@RequestBody String uniqueAccName) {
         return new ResponseEntity<>(userService.availableUniqueAccName(uniqueAccName), HttpStatus.OK);
+    }
+
+
+    public ResponseEntity<Boolean> checkLoginWhileSignIn(@RequestBody String login) {
+        return new ResponseEntity<>(userService.checkLoginWhileSignIn(login), HttpStatus.OK);
     }
 }

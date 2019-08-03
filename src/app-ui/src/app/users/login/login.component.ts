@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../shared/service/user.service";
 import {Router} from "@angular/router";
-import {LoginAuthService} from "../../authentication/login-auth.service";
+import {LoginAuthService} from "../../shared/authentication/login-auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CustomValidators} from "../../shared/validation/custom-validators";
+import {PasswordValidators} from "../../shared/validation/password-validators";
 
 @Component({
   selector: 'login',

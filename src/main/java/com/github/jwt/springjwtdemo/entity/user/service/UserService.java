@@ -154,4 +154,9 @@ public class UserService {
         Optional<User> byUniqueAccName = userRepository.findByUniqueAccName(uniqueAccName);
         return !byUniqueAccName.isPresent();
     }
+
+    public Boolean checkLoginWhileSignIn (String login) {
+        User user = userRepository.findByEmailIgnoreCase(login);
+        return user != null;
+    }
 }

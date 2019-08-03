@@ -17,8 +17,8 @@ import {UniqueAccNameValidatorDirective} from "./shared/validation/unique-acc-na
 
 
 import {UserService} from "./shared/service/user.service";
-import {AuthGuard} from "./authentication/auth.guard";
-import {LoginAuthService} from "./authentication/login-auth.service";
+import {AuthGuard} from "./shared/authentication/auth.guard";
+import {LoginAuthService} from "./shared/authentication/login-auth.service";
 import {GlobalErrorHandlerService} from "./shared/service/global-error-handler.service";
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";

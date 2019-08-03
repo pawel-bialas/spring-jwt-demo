@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginAuthService} from "../authentication/login-auth.service";
+import {LoginAuthService} from "../shared/authentication/login-auth.service";
 import {PostService} from "../shared/service/post.service";
 import {MonthFormat} from "../shared/moth-format/month-format";
 

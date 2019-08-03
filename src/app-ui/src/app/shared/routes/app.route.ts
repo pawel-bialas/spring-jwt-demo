@@ -3,7 +3,7 @@ import {HomeComponent} from "../../home/home.component";
 import {LoginComponent} from "../../users/login/login.component";
 import {SignUpComponent} from "../../users/sign-up/sign-up.component";
 import {AdminPanelComponent} from "../../admin/admin-panel/admin-panel.component";
-import {AuthGuard} from "../../authentication/auth.guard";
+import {AuthGuard} from "../authentication/auth.guard";
 import {UserPanelComponent} from "../../users/user-panel/user-panel.component";
 import {NewPostComponent} from "../../post/new-post/new-post.component";
 import {ErrorComponent} from "../error/error.component";

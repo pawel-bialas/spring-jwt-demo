@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {LoginAuthService} from "../authentication/login-auth.service";
+import {LoginAuthService} from "../shared/authentication/login-auth.service";
 import {Router} from "@angular/router";
 
 @Component({

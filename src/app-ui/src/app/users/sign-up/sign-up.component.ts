@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../shared/service/user.service";
-import {LoginAuthService} from "../../authentication/login-auth.service";
+import {LoginAuthService} from "../../shared/authentication/login-auth.service";
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {CustomValidators} from "../../shared/validation/custom-validators";
+import {PasswordValidators} from "../../shared/validation/password-validators";
 
 
 @Component({
@@ -61,13 +61,13 @@ export class SignUpComponent implements OnInit {
           // 1. Password Field is Required
           Validators.required,
           // 2. check whether the entered password has a number
-          CustomValidators.patternValidator(/\d/, {hasNumber: true}),
+          PasswordValidators.patternValidator(/\d/, {hasNumber: true}),
           // 3. check whether the entered password has upper case letter
-          CustomValidators.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
+          PasswordValidators.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
           // 4. check whether the entered password has a lower-case letter
-          CustomValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
+          PasswordValidators.patternValidator(/[a-z]/, {hasSmallCase: true}),
           // 5. check whether the entered password has a special character
-          CustomValidators.patternValidator(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, {hasSpecialCharacters: true}),
+          PasswordValidators.patternValidator(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, {hasSpecialCharacters: true}),
           // 6. Has a minimum length of 8 characters
           Validators.minLength(8)])
         ],
@@ -78,7 +78,7 @@ export class SignUpComponent implements OnInit {
         type: [1]
       },
       {
-        validator: CustomValidators.passwordMatchValidator
+        validator: PasswordValidators.passwordMatchValidator
       });
   }
 
