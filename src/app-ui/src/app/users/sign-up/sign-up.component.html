@@ -33,36 +33,29 @@
         <label class="col"
                [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
           <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
-          registerForm.controls['password'].hasError('minlength') ? 'cancel' :
-            'check_circle' }}</i>
+          registerForm.controls['password'].hasError('minlength') ? 'cancel' : 'check_circle' }}</i>
           Must be at least 8 characters!
         </label>
         <label class="col"
                [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
           <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
-          registerForm.controls['password'].hasError('hasNumber') ? 'cancel' :
-            'check_circle' }}</i>
+          registerForm.controls['password'].hasError('hasNumber') ? 'cancel' : 'check_circle' }}</i>
           Must contain at least 1 number!
         </label>
         <label class="col"
                [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
           <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
-          registerForm.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
-            'check_circle' }}</i>
+          registerForm.controls['password'].hasError('hasCapitalCase') ? 'cancel' : 'check_circle' }}</i>
           Must contain at least 1 in Capital Case!
         </label>
         <label class="col"
                [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
-          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
-          registerForm.controls['password'].hasError('hasSmallCase') ? 'cancel' :
-            'check_circle' }}</i>
+          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasSmallCase') ? 'cancel' : 'check_circle' }}</i>
           Must contain at least 1 Letter in Small Case!
         </label>
         <label class="col"
                [ngClass]="registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
-          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') ||
-          registerForm.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
-            'check_circle' }}</i>
+          <i class="material-icons">{{ registerForm.controls['password'].hasError('required') || registerForm.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' : 'check_circle' }}</i>
           Must contain at least 1 Special Character!
         </label>
         <mat-form-field>

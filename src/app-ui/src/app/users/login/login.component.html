@@ -7,19 +7,33 @@
 </div>
 
 <div class="container">
-  <form #loginForm = "ngForm">
+  <span class="spacer"></span>
+  <form [formGroup]="loginForm" class="login-form" (submit)="loginUser()">
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" class="form-control" name="email" [(ngModel)]="user.email">
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" class="form-control" name="password" [(ngModel)]="user.password">
-    </div>
-
-    <button type="button" class="btn btn-primary" (click)="loginUser(user)">Submit</button>
+    <mat-form-field>
+      <input
+        formControlName="email"
+        matInput placeholder="Email/login*"
+        uniqueLogin
+        matTooltip="Your email address serves as a login, and it can not be changed!"
+        matTooltipPosition="after"
+      >
+      <mat-error *ngIf="loginForm.controls['email'].hasError('required')">This field is required.</mat-error>
+      <mat-error *ngIf="loginForm.controls['email'].hasError('email')">Invalid email format.</mat-error>
+      <mat-error *ngIf="!loginForm.controls['email'].hasError('uniqueLogin')">Login/email not found</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        matInput placeholder="Password*">
+      <mat-error *ngIf="loginForm.controls['password'].hasError('required')">This field is required.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">
+      Sign-in
+    </button>
   </form>
+  <span class="spacer"></span>
 </div>
 
