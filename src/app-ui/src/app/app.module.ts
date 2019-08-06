@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 import { LayoutModule } from '@angular/cdk/layout';
+import { CheckLoginWhileSignInDirective } from './shared/validation/check-login-while-sign-in.directive';
 
 
 
@@ -53,7 +54,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     UniqueAccNameValidatorDirective,
     NewPostComponent,
     MainNavComponent,
-    ErrorComponent
+    ErrorComponent,
+    CheckLoginWhileSignInDirective
 
   ],
   imports: [

@@ -20,7 +20,7 @@ export class LoginAuthService {
   }
 
   clearStatus() {
-    this.subject.next();
+    this.subject.next({status: false});
   }
 
   getStatus(): Observable<any> {

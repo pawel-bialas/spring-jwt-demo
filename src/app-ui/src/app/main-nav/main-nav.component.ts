@@ -24,7 +24,8 @@ export class MainNavComponent {
 
   logout() {
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
+    this.authService.clearStatus();
+    this.router.navigate(['/home']);
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

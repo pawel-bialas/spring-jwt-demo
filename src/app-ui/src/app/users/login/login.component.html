@@ -14,13 +14,13 @@
       <input
         formControlName="email"
         matInput placeholder="Email/login*"
-        uniqueLogin
+        checkLoginWhileSignIn
         matTooltip="Your email address serves as a login, and it can not be changed!"
         matTooltipPosition="after"
       >
       <mat-error *ngIf="loginForm.controls['email'].hasError('required')">This field is required.</mat-error>
       <mat-error *ngIf="loginForm.controls['email'].hasError('email')">Invalid email format.</mat-error>
-      <mat-error *ngIf="!loginForm.controls['email'].hasError('uniqueLogin')">Login/email not found</mat-error>
+      <mat-error *ngIf="loginForm.controls['email'].hasError('checkLoginWhileSignIn')">Login/email not found</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input

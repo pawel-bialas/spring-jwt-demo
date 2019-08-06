@@ -18,7 +18,7 @@ public class RegisterController {
 
 
     @PostMapping(value = "/register")
-    public ResponseEntity<Response> register (@RequestBody User user) {
+    public ResponseEntity<Response> register(@RequestBody User user) {
         User dbUser = userService.saveUser(user);
         if (dbUser != null) {
             return new ResponseEntity<>(new Response("User saved!"), HttpStatus.CREATED);
@@ -29,12 +29,13 @@ public class RegisterController {
     public ResponseEntity<Boolean> checkAvailableLogin(@RequestBody String login) {
         return new ResponseEntity<>(userService.availableLogin(login), HttpStatus.OK);
     }
+
     @PostMapping(value = "/register/unique-acc-name")
     public ResponseEntity<Boolean> checkAvailableUniqueAccName(@RequestBody String uniqueAccName) {
         return new ResponseEntity<>(userService.availableUniqueAccName(uniqueAccName), HttpStatus.OK);
     }
 
-
+    @PostMapping(value = "/login/check-login")
     public ResponseEntity<Boolean> checkLoginWhileSignIn(@RequestBody String login) {
         return new ResponseEntity<>(userService.checkLoginWhileSignIn(login), HttpStatus.OK);
     }
