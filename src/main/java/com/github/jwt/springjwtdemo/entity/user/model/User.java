@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private LocalDateTime registerDate;
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status")
-    private UserStatus status;
+    private UserStatus userStatus;
     @Enumerated(EnumType.STRING)
     @Column(name = "account_type")
     private AccountType type;
@@ -75,7 +75,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.status != UserStatus.BLOCKED;
+        return this.userStatus != UserStatus.BLOCKED;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.status == UserStatus.ACTIVE;
+        return this.userStatus == UserStatus.ACTIVE;
     }
 
 

@@ -34,9 +34,8 @@ export class HomeComponent implements OnInit {
   formatCreationDate(date: any): String {
     let publicationDate: Date = new Date(date);
     let time: number = Date.now() - publicationDate.getTime();
-
     if (time > 86400000) {
-      return ' ' + publicationDate.getDay() + ' ' + MonthFormat.monthFormat(publicationDate) + ' ' + publicationDate.getFullYear();
+      return ' on ' + publicationDate.getDate() + ' ' + MonthFormat.monthFormat(publicationDate) + ' ' + publicationDate.getFullYear();
     } 
     
     if (time > 3600000) {
@@ -49,6 +48,10 @@ export class HomeComponent implements OnInit {
       let minutes = time / 60000;
       let minutesFormatted = Math.round(minutes);
       return ' ' + minutesFormatted + ' min ago';
+    }
+
+    if (time < 60000) {
+      return ' a moment ago'
     }
   }
 }

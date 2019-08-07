@@ -13,6 +13,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Iterable<Post> findByUserId (Long id);
     Optional<Post> findById (Long id);
 
-    Iterable<PostExcerpt> getAllBy();
+    Iterable<PostExcerpt> getAllByOrderByCreationDateDesc();
+
+
 
 }

@@ -27,7 +27,7 @@ public interface PostExcerpt {
     @Value("#{target.user.registerDate}")
     LocalDateTime getRegisterDate();
 
-    @Value("#{target.user.status}")
+    @Value("#{target.user.userStatus}")
     String getStatus();
 
     @Value("#{target.user.type}")

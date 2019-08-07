@@ -59,7 +59,7 @@ public class AdminService {
         try {
             User userById = userService.findUserById(accountId);
             if (userById != null) {
-                userById.setStatus(UserStatus.BLOCKED);
+                userById.setUserStatus(UserStatus.BLOCKED);
                 userRepository.save(userById);
                 LOG.info("User login: " + userById.getEmail() + " was blocked by admin");
             } else throw new EntityNotFoundException(SystemMessage.userNotFoundError);

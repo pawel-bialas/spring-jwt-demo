@@ -62,7 +62,7 @@ public class PostService {
 
     public List<PostExcerpt> findAllPublicPosts() {
 
-        return (List<PostExcerpt>) postRepository.getAllBy();
+        return (List<PostExcerpt>) postRepository.getAllByOrderByCreationDateDesc();
 
     }
 

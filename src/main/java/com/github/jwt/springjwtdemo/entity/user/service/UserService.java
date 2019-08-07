@@ -38,7 +38,7 @@ public class UserService {
             }
 
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setStatus(UserStatus.ACTIVE);
+            user.setUserStatus(UserStatus.ACTIVE);
             if (user.getType() == null) {
                 user.setType(AccountType.PUBLIC);
             }

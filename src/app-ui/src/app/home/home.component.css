@@ -30,6 +30,7 @@
   border-radius: 100%;
   border: solid black 3px;
   justify-content: center;
+  text-align: center;
 }
 
 .author-desc {
