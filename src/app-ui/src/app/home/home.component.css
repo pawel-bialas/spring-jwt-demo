@@ -56,3 +56,8 @@
   flex-direction: row;
 
 }
+
+.post-option a {
+  display: flex;
+  flex-direction: column;
+}

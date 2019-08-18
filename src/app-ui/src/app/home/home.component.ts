@@ -11,7 +11,13 @@ import {MonthFormat} from "../shared/month-format/month-format";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: LoginAuthService, private postService: PostService) { }
+
+  constructor(private authService: LoginAuthService, private postService: PostService) {
+    this.currentStatus = this.authService.getStatus().subscribe(currentStatus => {
+      this.currentStatus = currentStatus;})
+  }
+
+  private currentStatus: any;
 
   blogPosts: any[];
 
