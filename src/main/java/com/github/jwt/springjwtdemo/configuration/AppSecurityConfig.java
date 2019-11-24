@@ -1,8 +1,9 @@
-package com.github.jwt.springjwtdemo.config.security;
+package com.github.jwt.springjwtdemo.configuration;
 
 import com.github.jwt.springjwtdemo.authentication.filter.AuthenticationTokenFilter;
 import com.github.jwt.springjwtdemo.authentication.filter.CsrfHeaderFilter;
 import com.github.jwt.springjwtdemo.authentication.filter.JwtAuthenticationEntryPoint;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +34,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+    @Bean
+    public ModelMapper modelMapper () {
+        return new ModelMapper();
+    }
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {

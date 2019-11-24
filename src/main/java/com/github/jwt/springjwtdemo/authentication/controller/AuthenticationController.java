@@ -1,6 +1,6 @@
 package com.github.jwt.springjwtdemo.authentication.controller;
 
-import com.github.jwt.springjwtdemo.authentication.model.UserDTO;
+import com.github.jwt.springjwtdemo.authentication.model.JWTUserDTO;
 import com.github.jwt.springjwtdemo.entity.user.model.User;
 import com.github.jwt.springjwtdemo.authentication.model.JwtTokenUtil;
 import com.github.jwt.springjwtdemo.authentication.model.JwtUser;
@@ -32,14 +32,14 @@ public class AuthenticationController  {
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> login (@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<JWTUserDTO> login (@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
             final JwtUser userDetails = (JwtUser) authentication.getPrincipal();
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtTokenUtil.generateToken(userDetails);
             response.setHeader("Token", token);
-            return new ResponseEntity<>(new UserDTO(userDetails.getUser(), token), HttpStatus.CREATED);
+            return new ResponseEntity<>(new JWTUserDTO(userDetails.getUser(), token), HttpStatus.CREATED);
 
         } catch (Exception e) {
             throw new UnauthorizedException(e.getMessage());

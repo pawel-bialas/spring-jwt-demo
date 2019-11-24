@@ -21,6 +21,7 @@ import java.util.Collections;
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 641597340859104987L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -3,6 +3,7 @@ package com.github.jwt.springjwtdemo.entity.user.controller;
 import com.github.jwt.springjwtdemo.entity.user.model.User;
 import com.github.jwt.springjwtdemo.entity.user.service.UserService;
 import org.hibernate.annotations.Where;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -15,7 +16,6 @@ import java.security.Principal;
 public class AccountController {
 
     private final UserService userService;
-
 
     @Autowired
     public AccountController(UserService service) {

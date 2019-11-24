@@ -4,12 +4,12 @@ import com.github.jwt.springjwtdemo.entity.user.model.User;
 
 import java.io.Serializable;
 
-public class UserDTO implements Serializable {
+public class JWTUserDTO implements Serializable {
 
     private User user;
     private String token;
 
-    public UserDTO(User user, String token) {
+    public JWTUserDTO(User user, String token) {
         super();
         this.user = user;
         this.token = token;

@@ -1,4 +1,4 @@
-insert into users (
+insert into user (
     id,
     avatar_id,
     register_date,
@@ -8,7 +8,8 @@ insert into users (
     user_role,
     user_status,
     account_type,
-    unique_account_name)
+    unique_account_name,
+    version)
 values (
            1,
            1,
@@ -19,5 +20,6 @@ values (
            'MASTER_ADMIN',
            'ACTIVE',
            'PUBLIC',
-           'realMasterAdmin'
+           'realMasterAdmin',
+            1
        );

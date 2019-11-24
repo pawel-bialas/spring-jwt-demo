@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.mat-icon {
+
+}
+
 .post-window {
   width: 459px;
   height: 240px;
