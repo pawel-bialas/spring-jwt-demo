@@ -1,5 +1,7 @@
 package com.github.jwt.springjwtdemo.utils;
 
+import com.github.jwt.springjwtdemo.entity.post.dto.PostDTO;
+import com.github.jwt.springjwtdemo.entity.post.model.Post;
 import com.github.jwt.springjwtdemo.entity.user.dto.UserDTO;
 import com.github.jwt.springjwtdemo.entity.user.model.User;
 import org.modelmapper.ModelMapper;
@@ -23,5 +25,20 @@ public class DTOConverter {
     public User convertDTOToEntity (UserDTO userDTO) {
         return modelMapper.map(userDTO, User.class);
     }
+
+    public PostDTO convertEntityToDTO (Post post) {
+        UserDTO userDTO = convertEntityToDTO(post.getUser());
+        PostDTO postDTO = modelMapper.map(post, PostDTO.class);
+        postDTO.setUserDTO(userDTO);
+        return postDTO;
+    }
+
+    public Post convertDTOToEntity (PostDTO postDTO) {
+        User user = convertDTOToEntity(postDTO.getUserDTO());
+        Post post = modelMapper.map(postDTO, Post.class);
+        post.setUser(user);
+        return post;
+    }
+
 
 }
