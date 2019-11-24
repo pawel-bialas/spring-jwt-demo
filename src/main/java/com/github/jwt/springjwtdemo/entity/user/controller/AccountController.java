@@ -1,7 +1,9 @@
 package com.github.jwt.springjwtdemo.entity.user.controller;
 
+import com.github.jwt.springjwtdemo.entity.user.dto.UserDTO;
 import com.github.jwt.springjwtdemo.entity.user.model.User;
 import com.github.jwt.springjwtdemo.entity.user.service.UserService;
+import com.github.jwt.springjwtdemo.utils.DTOConverter;
 import org.hibernate.annotations.Where;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,34 +19,40 @@ public class AccountController {
 
     private final UserService userService;
 
+    private final DTOConverter dtoConverter;
+
     @Autowired
-    public AccountController(UserService service) {
+    public AccountController(UserService service, DTOConverter dtoConverter) {
         this.userService = service;
+        this.dtoConverter = dtoConverter;
     }
 
 
     @GetMapping(path = "/users/user-id/{id}")
     @Secured("ROLE_ADMIN")
     @ResponseStatus (HttpStatus.OK)
-    public User findUserById (@PathVariable("id") Long id) {
-        return userService.findUserById(id);
+    public UserDTO findUserById (@PathVariable("id") Long id) {
+        User user = userService.findUserById(id);
+        return dtoConverter.convertEntityToDTO(user);
     }
 
 
     @GetMapping(path = "/users/user-login/{login}")
     @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.OK)
-    public User findUserByLogin (@PathVariable ("login") String email) {
+    public UserDTO findUserByLogin (@PathVariable ("login") String email) {
+        User user = userService.findUserByEmail(email);
+        return dtoConverter.convertEntityToDTO(user);
 
-        return userService.findUserByEmail(email);
     }
 
     @Where(clause = "user_status <> 'BLOCKED'")
     @GetMapping(path = "/users/user-uniqe/{unique}")
     @RolesAllowed({ "ROLE_USER", "ROLE_ADMIN" })
     @ResponseStatus(HttpStatus.OK)
-    public User findByUniqueName(@PathVariable ("unique") String uniqueAccName) {
-        return userService.findUserByUniqueAccName(uniqueAccName);
+    public UserDTO findByUniqueName(@PathVariable ("unique") String uniqueAccName) {
+        User user = userService.findUserByUniqueAccName(uniqueAccName);
+        return dtoConverter.convertEntityToDTO(user);
     }
 
     @Where(clause = "user_status <> 'BLOCKED'")
