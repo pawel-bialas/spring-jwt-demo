@@ -34,7 +34,10 @@ public class DTOConverter {
     }
 
     public Post convertDTOToEntity (PostDTO postDTO) {
-        User user = convertDTOToEntity(postDTO.getUserDTO());
+        User user = null;
+        if (!(postDTO.getUserDTO() == null)) {
+            user = convertDTOToEntity(postDTO.getUserDTO());
+        }
         Post post = modelMapper.map(postDTO, Post.class);
         post.setUser(user);
         return post;

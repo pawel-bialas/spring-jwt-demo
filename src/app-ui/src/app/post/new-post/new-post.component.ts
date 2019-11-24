@@ -15,7 +15,12 @@ export class NewPostComponent implements OnInit {
   public loggedUser: any = {};
   public post: any = {};
 
-  constructor(private authService: LoginAuthService, private router: Router, private fb: FormBuilder, private postService: PostService) {
+  constructor(
+    private authService: LoginAuthService,
+    private router: Router,
+    private fb: FormBuilder,
+    private postService: PostService
+  ) {
     this.authService.isLoggedIn();
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
     this.newPostForm = this.createPostForm();

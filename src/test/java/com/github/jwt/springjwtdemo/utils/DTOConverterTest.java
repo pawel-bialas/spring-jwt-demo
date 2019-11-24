@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DTOConverterTest {
 
-    private DTOConverter DTOConverter = new DTOConverter();
+    private DTOConverter _DTOConverter = new DTOConverter();
 
     @Test
     void shouldResultTrueWhenCheckingUserDTOConversionObjectProperties() {
@@ -29,7 +29,7 @@ class DTOConverterTest {
         user.setRole(UserRole.USER);
         user.setType(AccountType.PUBLIC);
         // When
-        UserDTO userDTO = DTOConverter.convertEntityToDTO(user);
+        UserDTO userDTO = _DTOConverter.convertEntityToDTO(user);
         // Then
         assertEquals(user.getEmail(),userDTO.getEmail());
     }
@@ -46,7 +46,7 @@ class DTOConverterTest {
         userDTO.setRole(UserRole.USER);
         userDTO.setType(AccountType.PUBLIC);
         // When
-        User user = DTOConverter.convertDTOToEntity(userDTO);
+        User user = _DTOConverter.convertDTOToEntity(userDTO);
         // Then
         assertEquals(user.getEmail(),userDTO.getEmail());
     }
@@ -68,7 +68,7 @@ class DTOConverterTest {
         userDTO.setType(AccountType.PUBLIC);
         postDTO.setUserDTO(userDTO);
         // When
-        Post post = DTOConverter.convertDTOToEntity(postDTO);
+        Post post = _DTOConverter.convertDTOToEntity(postDTO);
         // Then
         assertEquals(post.getContent(),postDTO.getContent());
         assertEquals(post.getUser().getEmail(),postDTO.getUserDTO().getEmail());
@@ -91,7 +91,7 @@ class DTOConverterTest {
         user.setType(AccountType.PUBLIC);
         post.setUser(user);
         // When
-        PostDTO postDTO = DTOConverter.convertEntityToDTO(post);
+        PostDTO postDTO = _DTOConverter.convertEntityToDTO(post);
         // Then
         assertEquals(post.getContent(),postDTO.getContent());
         assertEquals(post.getUser().getEmail(),postDTO.getUserDTO().getEmail());

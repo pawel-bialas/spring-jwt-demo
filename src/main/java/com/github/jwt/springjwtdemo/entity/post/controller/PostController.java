@@ -1,5 +1,7 @@
 package com.github.jwt.springjwtdemo.entity.post.controller;
 
+import com.github.jwt.springjwtdemo.entity.post.dto.PostDTO;
+import com.github.jwt.springjwtdemo.utils.DTOConverter;
 import com.github.jwt.springjwtdemo.utils.Response;
 import com.github.jwt.springjwtdemo.entity.post.model.Post;
 import com.github.jwt.springjwtdemo.entity.post.projection.PostExcerpt;
@@ -18,16 +20,20 @@ public class PostController {
 
     private final PostService postService;
 
+    private final DTOConverter _DTOConverter;
+
     @Autowired
-    public PostController(PostService service) {
+    public PostController(PostService service, DTOConverter _DTOConverter) {
         this.postService = service;
+        this._DTOConverter = _DTOConverter;
     }
 
 
     @PostMapping(path = "/post/new-post")
     @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
-    public ResponseEntity<Response> newPost(@RequestBody Post post, Principal principal) {
-        Post dbPost = postService.saveNewPost(post, principal);
+    public ResponseEntity<Response> newPost(@RequestBody PostDTO post, Principal principal) {
+        Post post1 = _DTOConverter.convertDTOToEntity(post);
+        Post dbPost = postService.saveNewPost(post1, principal);
         if (dbPost != null) {
             return new ResponseEntity<>(new Response("Post saved!"),HttpStatus.CREATED);
         }
