@@ -35,8 +35,5 @@ public class RegisterController {
         return new ResponseEntity<>(userService.availableUniqueAccName(uniqueAccName), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/login/check-login")
-    public ResponseEntity<Boolean> checkLoginWhileSignIn(@RequestBody String login) {
-        return new ResponseEntity<>(userService.checkLoginWhileSignIn(login), HttpStatus.OK);
-    }
+
 }

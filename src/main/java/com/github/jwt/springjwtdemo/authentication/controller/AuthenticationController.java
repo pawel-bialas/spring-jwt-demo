@@ -4,6 +4,7 @@ import com.github.jwt.springjwtdemo.authentication.model.JWTUserDTO;
 import com.github.jwt.springjwtdemo.entity.user.model.User;
 import com.github.jwt.springjwtdemo.authentication.model.JwtTokenUtil;
 import com.github.jwt.springjwtdemo.authentication.model.JwtUser;
+import com.github.jwt.springjwtdemo.entity.user.service.UserService;
 import com.github.jwt.springjwtdemo.utils.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +31,8 @@ public class AuthenticationController  {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<JWTUserDTO> login (@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
@@ -45,4 +48,10 @@ public class AuthenticationController  {
             throw new UnauthorizedException(e.getMessage());
         }
     }
+
+    @PostMapping(value = "/login/check-login")
+    public ResponseEntity<Boolean> checkLoginWhileSignIn(@RequestBody String login) {
+        return new ResponseEntity<>(userService.checkLoginWhileSignIn(login), HttpStatus.OK);
+    }
+
 }
