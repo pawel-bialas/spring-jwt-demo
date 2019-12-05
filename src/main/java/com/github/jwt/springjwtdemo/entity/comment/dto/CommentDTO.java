@@ -2,6 +2,7 @@ package com.github.jwt.springjwtdemo.entity.comment.dto;
 
 import com.github.jwt.springjwtdemo.entity.post.model.ContentStatus;
 import com.github.jwt.springjwtdemo.entity.post.model.ContentType;
+import com.github.jwt.springjwtdemo.entity.user.dto.UserDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,4 +24,5 @@ public class CommentDTO {
     private Long postId;
     private LocalDateTime editionDate;
     private Integer version;
+    private UserDTO userDTO;
 }

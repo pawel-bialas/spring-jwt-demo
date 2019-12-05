@@ -47,6 +47,7 @@ public class CommentService {
                     comment.setPostId(postId);
                     comment.setType(ContentType.COMMENT);
                     comment.setStatus(ContentStatus.NEW);
+                    comment.setUser(userService.findUserById(accountId));
                     commentRepository.save(comment);
                     LOG.info("new comment created by: " + principal.getName());
                 } else {

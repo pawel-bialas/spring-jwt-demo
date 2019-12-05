@@ -3,6 +3,7 @@ package com.github.jwt.springjwtdemo.entity.comment.model;
 
 import com.github.jwt.springjwtdemo.entity.post.model.ContentStatus;
 import com.github.jwt.springjwtdemo.entity.post.model.ContentType;
+import com.github.jwt.springjwtdemo.entity.user.model.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -37,5 +38,9 @@ public class Comment {
     @Version
     @Column(name = "version")
     private Integer version;
+
+    @OneToOne (cascade = {CascadeType.ALL})
+    @JoinColumn(referencedColumnName = "id", insertable = false, updatable = false)
+    private User user;
 
 }

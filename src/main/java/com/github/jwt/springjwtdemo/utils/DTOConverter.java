@@ -1,5 +1,7 @@
 package com.github.jwt.springjwtdemo.utils;
 
+import com.github.jwt.springjwtdemo.entity.comment.dto.CommentDTO;
+import com.github.jwt.springjwtdemo.entity.comment.model.Comment;
 import com.github.jwt.springjwtdemo.entity.post.dto.PostDTO;
 import com.github.jwt.springjwtdemo.entity.post.model.Post;
 import com.github.jwt.springjwtdemo.entity.user.dto.UserDTO;
@@ -18,22 +20,22 @@ public class DTOConverter {
     private ModelMapper modelMapper = new ModelMapper();
 
 
-    public UserDTO convertEntityToDTO (User user) {
-       return modelMapper.map(user, UserDTO.class);
+    public UserDTO convertEntityToDTO(User user) {
+        return modelMapper.map(user, UserDTO.class);
     }
 
-    public User convertDTOToEntity (UserDTO userDTO) {
+    public User convertDTOToEntity(UserDTO userDTO) {
         return modelMapper.map(userDTO, User.class);
     }
 
-    public PostDTO convertEntityToDTO (Post post) {
+    public PostDTO convertEntityToDTO(Post post) {
         UserDTO userDTO = convertEntityToDTO(post.getUser());
         PostDTO postDTO = modelMapper.map(post, PostDTO.class);
         postDTO.setUserDTO(userDTO);
         return postDTO;
     }
 
-    public Post convertDTOToEntity (PostDTO postDTO) {
+    public Post convertDTOToEntity(PostDTO postDTO) {
         User user = null;
         if (!(postDTO.getUserDTO() == null)) {
             user = convertDTOToEntity(postDTO.getUserDTO());
@@ -43,5 +45,24 @@ public class DTOConverter {
         return post;
     }
 
+    public Comment convertDTOToEntity(CommentDTO commentDTO) {
+        User user = null;
+        if (!(commentDTO.getUserDTO() == null)) {
+            user = convertDTOToEntity(commentDTO.getUserDTO());
+        }
+        Comment comment = modelMapper.map(commentDTO, Comment.class);
+        comment.setUser(user);
+        return comment;
+    }
+
+    public CommentDTO convertEntityToDTO (Comment comment) {
+        UserDTO userDTO = convertEntityToDTO(comment.getUser());
+        CommentDTO commentDTO = modelMapper.map(comment, CommentDTO.class);
+        commentDTO.setUserDTO(userDTO);
+        return commentDTO;
+    }
 
 }
+
+
+
