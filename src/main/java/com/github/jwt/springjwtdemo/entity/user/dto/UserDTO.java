@@ -16,14 +16,10 @@ public class UserDTO {
 
 
     private Long id;
-    private String email;
-    private String password;
     private String uniqueAccName;
     private String descAccName;
     private LocalDateTime registerDate;
     private UserStatus userStatus;
-    private AccountType type;
-    private UserRole role;
     private Long avatarId;
-    private Integer version;
+
 }

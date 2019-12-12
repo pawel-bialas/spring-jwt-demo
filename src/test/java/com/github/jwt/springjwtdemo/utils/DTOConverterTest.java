@@ -22,7 +22,7 @@ class DTOConverterTest {
     private DTOConverter _DTOConverter = new DTOConverter();
 
     @Test
-    void convertingUsertoUserDTO() {
+    void convertingUserEntityToUserDTO() {
         // Given
 
         User user = new User();
@@ -34,29 +34,31 @@ class DTOConverterTest {
         user.setType(AccountType.PUBLIC);
         // When
         UserDTO userDTO = _DTOConverter.convertEntityToDTO(user);
+        User user1 = _DTOConverter.convertDTOToEntity(userDTO);
+        System.out.println(user.toString());
+        System.out.println(userDTO.toString());
+        System.out.println(user1.toString());
         // Then
-        assertEquals(user.getEmail(), userDTO.getEmail());
+        assertEquals(user.getUniqueAccName(), userDTO.getUniqueAccName());
     }
 
     @Test
-    void convertingUserDTOtoUser() {
+    void convertingUserDTOtoUserEntity() {
         // Given
 
         UserDTO userDTO = new UserDTO();
         userDTO.setId(1L);
-        userDTO.setEmail("abc@cba.pl");
         userDTO.setDescAccName("abc");
         userDTO.setUniqueAccName("abc");
-        userDTO.setRole(UserRole.USER);
-        userDTO.setType(AccountType.PUBLIC);
         // When
         User user = _DTOConverter.convertDTOToEntity(userDTO);
+        System.out.println(user.toString());
         // Then
-        assertEquals(user.getEmail(), userDTO.getEmail());
+        assertEquals(user.getUniqueAccName(), userDTO.getUniqueAccName());
     }
 
     @Test
-    void convertingPostDTOtoPost() {
+    void convertingPostDTOtoPostEntity() {
         // Given
         PostDTO postDTO = new PostDTO();
         postDTO.setContent("asd");
@@ -65,21 +67,18 @@ class DTOConverterTest {
         postDTO.setStatus(ContentStatus.NEW);
         UserDTO userDTO = new UserDTO();
         userDTO.setId(1L);
-        userDTO.setEmail("abc@cba.pl");
         userDTO.setDescAccName("abc");
         userDTO.setUniqueAccName("abc");
-        userDTO.setRole(UserRole.USER);
-        userDTO.setType(AccountType.PUBLIC);
         postDTO.setUserDTO(userDTO);
         // When
         Post post = _DTOConverter.convertDTOToEntity(postDTO);
         // Then
         assertEquals(post.getContent(), postDTO.getContent());
-        assertEquals(post.getUser().getEmail(), postDTO.getUserDTO().getEmail());
+        assertEquals(post.getUser().getDescAccName(), postDTO.getUserDTO().getDescAccName());
     }
 
     @Test
-    void convertingPostToPostDTO() {
+    void convertingPostEntityToPostDTO() {
         // Given
         Post post = new Post();
         post.setContent("asd");
@@ -98,12 +97,12 @@ class DTOConverterTest {
         PostDTO postDTO = _DTOConverter.convertEntityToDTO(post);
         // Then
         assertEquals(post.getContent(), postDTO.getContent());
-        assertEquals(post.getUser().getEmail(), postDTO.getUserDTO().getEmail());
+        assertEquals(post.getUser().getUniqueAccName(), postDTO.getUserDTO().getUniqueAccName());
 
     }
 
     @Test
-    public void convertingCommentToCommentDTO() {
+    public void convertingCommentEntityToCommentDTO() {
         // Given
         Comment comment = new Comment();
         comment.setId(1L);
@@ -122,12 +121,12 @@ class DTOConverterTest {
         // When
         CommentDTO commentDTO = _DTOConverter.convertEntityToDTO(comment);
         // Then
-        assertEquals(comment.getContent(),commentDTO.getContent());
-        assertEquals(comment.getCreationDate(),commentDTO.getCreationDate());
+        assertEquals(comment.getContent(), commentDTO.getContent());
+        assertEquals(comment.getCreationDate(), commentDTO.getCreationDate());
     }
 
     @Test
-    public void shouldReturnTrueWhenCheckingCommentDTOConvertedObjectProperties() {
+    public void convertingCommentDTOToCommentEntity() {
         // Given
         CommentDTO commentDTO = new CommentDTO();
         commentDTO.setId(1L);
@@ -135,19 +134,17 @@ class DTOConverterTest {
         commentDTO.setCreationDate(LocalDateTime.now());
         UserDTO userDTO = new UserDTO();
         userDTO.setId(1L);
-        userDTO.setEmail("abc@cba.pl");
         userDTO.setDescAccName("abc");
         userDTO.setUniqueAccName("abc");
-        userDTO.setRole(UserRole.USER);
-        userDTO.setType(AccountType.PUBLIC);
+
         commentDTO.setUserDTO(userDTO);
         commentDTO.setAccountId(userDTO.getId());
 
         // When
         Comment comment = _DTOConverter.convertDTOToEntity(commentDTO);
         // Then
-        assertEquals(comment.getContent(),commentDTO.getContent());
-        assertEquals(comment.getCreationDate(),commentDTO.getCreationDate());
+        assertEquals(comment.getContent(), commentDTO.getContent());
+        assertEquals(comment.getCreationDate(), commentDTO.getCreationDate());
 
     }
 
