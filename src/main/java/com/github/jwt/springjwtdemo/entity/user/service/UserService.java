@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
+import javax.persistence.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,20 @@ public class UserService {
     @Autowired
     private  PasswordEncoder passwordEncoder;
 
+    private EntityManagerFactory emf;
+    @PersistenceUnit
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
     private Logger LOG = Logger.getLogger(UserService.class.getName());
+
+    public void defineMasterAdmin (User masterAdmin) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(masterAdmin);
+        em.getTransaction().commit();
+    }
 
     public User saveUser(User user) {
         try {
